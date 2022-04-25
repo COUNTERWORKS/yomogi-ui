@@ -1,0 +1,19 @@
+version: "3"
+
+services:
+  node:
+    image: node:16
+    container_name: yomogi-storybook
+    tty: true
+    environment:
+      - NODE_ENV=development
+    volumes:
+      - ./:/yomogi
+    ports:
+      - 6005:6006
+    command:
+      - sh
+      - -c
+      - "yarn install;
+         yarn storybook"
+    working_dir: /yomogi

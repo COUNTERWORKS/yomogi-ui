@@ -1,75 +1,77 @@
 import { darken, lighten } from 'polished';
 
-interface MainTheme {
+interface MainColor {
   main: string;
-  background: string;
   text: string;
-  hover: string;
 }
 
-interface ShadowTheme {
+interface ShadowColor {
   base: string;
 }
 
-export interface Theme {
-  primary: MainTheme;
-  secondary: MainTheme;
-  success: MainTheme;
-  info: MainTheme;
-  caution: MainTheme;
-  error: MainTheme;
+export type Colors = {
+  primary: MainColor;
+  secondary: MainColor;
+  success: MainColor;
+  info: MainColor;
+  caution: MainColor;
+  error: MainColor;
+  danger: MainColor;
+  light: MainColor;
+  neutral: MainColor;
   gray: Record<number, string>;
   blue: Record<number, string>;
   green: Record<number, string>;
   orange: Record<number, string>;
   red: Record<number, string>;
-  shadow: ShadowTheme;
+  shadow: ShadowColor;
   white: string;
   black: string;
   border: String;
   link: string;
   text: string;
   textGray: string;
+  hover: (code: string) => string;
 }
 
-export type Color = 'primary' | 'secondary' | 'success' | 'info' | 'caution' | 'error'
+export type Color = 'primary' | 'secondary' | 'neutral' | 'success' | 'info' | 'caution' | 'error' | 'light' | 'danger'
 
-export const defaultTheme: Theme = {
+export const defaultColors: Colors = {
   primary: {
     main: '#ff4a1a',
-    text: '',
-    background: '',
-    hover: '',
+    text: '#fff',
   },
   secondary: {
     main: '#0d6780',
-    text: '',
-    background: '',
-    hover: '',
+    text: '#fff',
+  },
+  neutral: {
+    main: darken(0.3, '#ddd'),
+    text: '#fff',
   },
   success: {
     main: darken(0.5, '#c6edcf'),
-    text: '',
-    background: '',
-    hover: '',
+    text: '#fff',
   },
   info: {
     main: darken(0.5, '#cbe2ee'),
-    background: '',
-    text: '',
-    hover: '',
+    text: '#fff',
   },
   caution: {
     main: darken(0.5, '#f3ddba'),
-    background: '',
-    text: '',
-    hover: '',
+    text: '#fff',
   },
   error: {
     main: darken(0.5, '#f6d0cd'),
-    background: '',
-    text: '',
-    hover: '',
+    text: '#fff',
+  },
+  danger: {
+    main: darken(0.5, '#f6d0cd'),
+    text: '#fff',
+  },
+  light: {
+    main: '#fff',
+    text: darken(0.5, '#ddd'),
   },
 
   gray: {
@@ -136,4 +138,5 @@ export const defaultTheme: Theme = {
   link: '#ff4a1a',
   text: darken(0.5, '#ddd'),
   textGray: darken(0.3, '#ddd'),
+  hover: (code: string) => lighten(0.1, code),
 };

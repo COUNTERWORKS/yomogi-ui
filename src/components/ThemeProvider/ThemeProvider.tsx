@@ -1,7 +1,7 @@
 
 import React, { ReactNode } from 'react';
 import { css } from '@emotion/react';
-import { defaultTheme, Theme } from '../../theme';
+import { Theme, theme as defaultTheme } from '../../themes/theme';
 
 
 export const resetStyle = css`
@@ -175,7 +175,7 @@ export const resetStyle = css`
 
 export const ThemeContext = React.createContext(defaultTheme);
 
-export const ThemeProvider:React.FC<{ theme: Theme, children: ReactNode }>= ({ theme, children }) => {
+export const ThemeProvider:React.FC<{ theme?: Theme, children: ReactNode }>= ({ theme = defaultTheme, children }) => {
   return (
     <ThemeContext.Provider value={theme}>
       {children}
