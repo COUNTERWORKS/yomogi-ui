@@ -51,6 +51,6 @@ Danger.args = {
 
 export const Light = Template.bind({});
 
-Danger.args = {
+Light.args = {
   color: 'light',
 };
