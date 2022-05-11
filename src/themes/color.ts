@@ -75,7 +75,7 @@ export const defaultColors: Colors = {
   },
 
   gray: {
-    100: 'f5f5f5',
+    100: '#f5f5f5',
     200: '#ddd',
     300: darken(0.1, '#ddd'),
     400: darken(0.2, '#ddd'),
