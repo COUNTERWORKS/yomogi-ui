@@ -2,7 +2,7 @@ import { ComponentStory, ComponentMeta } from '@storybook/react';
 import { Hint } from './Hint';
 
 export default {
-  title: 'YOMOGI-UI/Hint',
+  title: 'YOMOGI-UI/Form/Hint',
   component: Hint,
   args: {
     children: 'hint',

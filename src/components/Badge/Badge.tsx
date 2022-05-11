@@ -15,7 +15,7 @@ export const Badge: FC<ComponentPropsWithRef<'div'> & BadgeProps> = ({ color = '
   return <StyledBadge color={color} theme={theme} {...props}>{children}</StyledBadge>;
 };
 
-const StyledBadge = styled.div<{theme: Theme, color: BadgeColor }>`
+const StyledBadge = styled.div<{ theme: Theme, color: BadgeColor }>`
   position: relative;
   display: inline-block;
   padding: 0 10px;
