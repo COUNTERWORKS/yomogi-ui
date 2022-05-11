@@ -1,5 +1,6 @@
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 import { FormBlock } from './FormBlock';
+import { Input } from '../Input';
 
 export default {
   title: 'YOMOGI-UI/Form/FormBlock',
@@ -16,7 +17,7 @@ export const Default = Template.bind({});
 Default.args = {
   label: 'label',
   hint: 'hint',
-  children: 'input',
+  children: <Input/>,
 };
 
 export const WithErrorMessage = Template.bind({});
@@ -24,7 +25,7 @@ export const WithErrorMessage = Template.bind({});
 WithErrorMessage.args = {
   label: 'label',
   hint: 'hint',
-  children: 'input',
+  children: <Input isError />,
   errorMessage: 'errorMessage',
 };
 
