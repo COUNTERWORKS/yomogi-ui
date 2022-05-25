@@ -14,6 +14,7 @@ export const parameters = {
 export const decorators = [
   (Story) => (
     <ThemeProvider>
+      <Global styles={resetStyle} />
       <Story />
     </ThemeProvider>
   ),

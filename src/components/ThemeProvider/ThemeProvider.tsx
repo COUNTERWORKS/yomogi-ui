@@ -171,6 +171,90 @@ export const resetStyle = css`
   select {
     vertical-align: middle;
   }
+
+  html {
+    font-size: 62.5%; //1rem
+    background: #fff;
+  }
+
+  body {
+    position: relative;
+    font-family: "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN", Meiryo, sans-serif;
+    font-feature-settings: "palt";
+    font-size: 14px;
+    letter-spacing: 0.06em;
+    line-height: 1.5;
+    word-break: break-all;
+    word-wrap: break-word;
+    color: #414141;
+    margin: 0;
+  }
+
+  a {
+    color: #ff4a1a;
+    text-decoration: none;
+    outline: none;
+    transition: .2s ease-in-out;
+    transition-property: background-color, color, border-color, opacity;
+    -webkit-text-decoration-skip: none;
+    &:hover {
+      text-decoration: underline;
+      cursor: pointer;
+    }
+  }
+
+  form {
+    display: inline;
+  }
+
+  input,
+  textarea,
+  select,
+  button {
+    font-family : inherit;
+    font-size : 100%;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    border: solid 1px #ddd;
+    padding: 10px 12px;
+    transition: .2s ease-in-out;
+    transition-property: background-color, color, border-color, opacity;
+  }
+
+  select {
+    line-height: 1;
+  }
+
+  input[type="radio"] {
+    -webkit-appearance: radio;
+    -moz-appearance: radio;
+    appearance: radio;
+  }
+
+  input[type="checkbox"] {
+    -webkit-appearance: checkbox;
+    -moz-appearance: checkbox;
+    appearance: checkbox;
+  }
+
+  input::placeholder,
+  input:-ms-input-placeholder,
+  input::-ms-input-placeholder,
+  ::-webkit-input-placeholder {
+    color: #999;
+  }
+
+  textarea {
+    min-height: calc(4 * 1.5 * 1rem);
+  }
+
+  img {
+    vertical-align: bottom;
+    border: none;
+    outline: none;
+    max-width: 100%;
+  }
 `;
 
 export const ThemeContext = React.createContext(defaultTheme);
