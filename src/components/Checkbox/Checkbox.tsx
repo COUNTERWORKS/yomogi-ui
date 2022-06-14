@@ -8,7 +8,7 @@ type Props = {
   label: string;
 }
 
-export const Radio: FC<ComponentPropsWithRef<'input'> & Props> = ({ id, label, className = '', ...props }) => {
+export const Checkbox: FC<ComponentPropsWithRef<'input'> & Props> = ({ id, label, className = '', ...props }) => {
   const theme = useTheme();
   return (
     <Container className={className}>
@@ -43,7 +43,7 @@ const Label = styled.label<{ theme: Theme }>`
     border: ${({ theme }) => `solid 2px ${theme.colors.border}`};
     background-color: ${({ theme }) => theme.colors.white};
     content: '';
-    border-radius: 100%;
+    border-radius: 3px;
     box-sizing: border-box;
     transition: .2s ease-in-out;
     transition-property: background-color, color, border-color, opacity;
@@ -51,9 +51,9 @@ const Label = styled.label<{ theme: Theme }>`
 `;
 
 const Input = styled.input<{ theme: Theme }>`
-  -webkit-clip: rect(1px,1px,1px,1px);
+  -webkit-clip: rect(1px, 1px, 1px, 1px);
   -webkit-clip-path: inset(100%);
-  clip: rect(1px,1px,1px,1px);
+  clip: rect(1px, 1px, 1px, 1px);
   clip-path: inset(100%);
   position: absolute;
   height: 1px;
@@ -63,8 +63,21 @@ const Input = styled.input<{ theme: Theme }>`
   &:checked + label {
     &:before {
       background: ${({ theme }) => theme.colors.secondary.main};
-      box-shadow: ${({ theme }) => `inset 0 0 0 3px ${theme.colors.white}, 0 0 0 2px ${theme.colors.blue[200]}`};
+      box-shadow: ${({ theme }) => `0 0 0 2px ${theme.colors.blue[200]}`};
       border-color: ${({ theme }) => theme.colors.secondary.main};
+    }
+    &:after {
+      border-right: ${({ theme }) => `2px solid ${theme.colors.white}`};
+      border-bottom:  ${({ theme }) => `2px solid ${theme.colors.white}`};
+      content: '';
+      display: block;
+      height: 7px;
+      left: 5px;
+      margin-top: -6px;
+      position: absolute;
+      top: 50%;
+      transform: rotate(45deg);
+      width: 5px;
     }
   }
 `;
