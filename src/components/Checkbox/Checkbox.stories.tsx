@@ -1,7 +1,7 @@
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 import { FormBlock } from '../FormBlock';
 import { Checkbox } from './Checkbox';
-import { CheckBlock } from '../CheckBlock';
+import { Flex } from '../Flex';
 
 export default {
   title: 'YOMOGI-UI/Form/Checkbox',
@@ -11,10 +11,10 @@ export default {
 
 const Template: ComponentStory<typeof Checkbox> = () =>(
   <FormBlock label='好きな食べ物' hint="hint">
-    <CheckBlock flex>
+    <Flex>
       <Checkbox id="apple" name="food" label="りんご" value="apple" />
       <Checkbox id="orange" label="オレンジ" name="food" value="orange" />
-    </CheckBlock>
+    </Flex>
   </FormBlock>
 );
 
