@@ -12,7 +12,7 @@ export const Checkbox: FC<ComponentPropsWithRef<'input'> & Props> = ({ id, label
   const theme = useTheme();
   return (
     <Container className={className}>
-      <Input id={id} {...props} type="radio" theme={theme}/>
+      <Input id={id} {...props} type="checkbox" theme={theme}/>
       <Label htmlFor={id} theme={theme}>
         {label}
       </Label>
