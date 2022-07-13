@@ -36,13 +36,13 @@ const StyledButton = styled.button<{theme: Theme, color: ButtonColor, size: Butt
   border-radius: 3px;
   transition: all .2s ease-in-out;
   text-decoration: none;
-  padding: ${({ theme, formAdjacent }) => formAdjacent ? `${theme.space(2)}px ${theme.space(6)}px`: `${theme.space(3)}px ${theme.space(6)}px`}};
-  color: ${({ theme, color }) => theme.colors[color].text}};
-  background-color: ${({ theme, color }) => theme.colors[color].main}};
+  padding: ${({ theme, formAdjacent }) => formAdjacent ? `${theme.space(2)}px ${theme.space(6)}px`: `${theme.space(3)}px ${theme.space(6)}px`};
+  color: ${({ theme, color }) => theme.colors[color].text};
+  background-color: ${({ theme, color }) => theme.colors[color].main};
   width: ${({ size }) => buttonWidth[size]};
 
   &:hover {
-    background-color: ${({ theme, color }) => theme.colors.hover(theme.colors[color].main)}};
+    background-color: ${({ theme, color }) => theme.colors.hover(theme.colors[color].main)};
   };
   &:disabled {
     background-color: ${({ theme }) => theme.colors.gray[500]};
