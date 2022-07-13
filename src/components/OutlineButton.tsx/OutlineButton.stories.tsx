@@ -1,9 +1,9 @@
 import { ComponentStory, ComponentMeta } from '@storybook/react';
-import { Button } from './Button';
+import { OutlineButton } from './OutlineButton';
 
 export default {
-  title: 'YOMOGI-UI/Button/Button',
-  component: Button,
+  title: 'YOMOGI-UI/Button/OutlineButton',
+  component: OutlineButton,
   args: {
     disabled: false,
     size: 'normal',
@@ -18,10 +18,10 @@ export default {
       },
     },
   },
-} as ComponentMeta<typeof Button>;
+} as ComponentMeta<typeof OutlineButton>;
 
 
-const Template: ComponentStory<typeof Button> = (args) => <Button {...args} />;
+const Template: ComponentStory<typeof OutlineButton> = (args) => <OutlineButton {...args} />;
 
 export const Primary = Template.bind({});
 
@@ -47,10 +47,4 @@ export const Danger = Template.bind({});
 
 Danger.args = {
   color: 'danger',
-};
-
-export const Light = Template.bind({});
-
-Light.args = {
-  color: 'light',
 };
