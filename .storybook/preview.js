@@ -1,5 +1,6 @@
 import { ThemeProvider, resetStyle } from '../src/components'
 import { Global } from '@emotion/react'
+// import { withPropsTable } from 'storybook-addon-react-docgen'
 
 export const parameters = {
   actions: { argTypesRegex: "^on[A-Z].*" },
