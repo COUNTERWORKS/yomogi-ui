@@ -8,7 +8,9 @@ type AlertColor = Extract<Color, 'info' | 'success' | 'caution' | 'error'>;
 
 type AlertProps = {
   color: AlertColor;
+  /** closeを押したときに実行される */
   onClickCloseButton?: () => void;
+  /** closeボタンを表示 */
   showCloseButton?: boolean;
 }
 

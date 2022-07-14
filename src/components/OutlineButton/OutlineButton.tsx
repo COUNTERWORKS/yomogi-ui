@@ -3,7 +3,7 @@ import { Color, Theme } from '../../themes';
 import { useTheme } from '../../hooks';
 import styled from '@emotion/styled';
 
-type ButtonColor = Extract<Color, 'primary' | 'secondary' | 'neutral' | 'light' | 'danger'>;
+type ButtonColor = Extract<Color, 'primary' | 'secondary' | 'neutral' | 'danger'>;
 type ButtonSize = 'small' | 'normal' | 'auto' | 'large' | 'full'
 
 type ButtonProps = {
@@ -21,7 +21,7 @@ const buttonWidth = {
   full: '100%',
 };
 
-export const Button: FC<ComponentPropsWithRef<'button'> & ButtonProps> = ({ color = 'primary', size = 'normal', formAdjacent = false, children, ...props }) => {
+export const OutlineButton: FC<ComponentPropsWithRef<'button'> & ButtonProps> = ({ color = 'primary', size = 'normal', formAdjacent = false, children, ...props }) => {
   const theme = useTheme();
 
   return <StyledButton color={color} theme={theme} size={size} formAdjacent={formAdjacent} {...props}>{children}</StyledButton>;
@@ -33,21 +33,23 @@ const StyledButton = styled.button<{theme: Theme, color: ButtonColor, size: Butt
   cursor: pointer;
   font-weight: bold;
   text-align: center;
-  border: solid 1px transparent;
+  border: solid 1px ${({ theme, color }) => theme.colors[color].main};
   outline: none;
   border-radius: 3px;
   transition: all .2s ease-in-out;
   text-decoration: none;
   padding: ${({ theme, formAdjacent }) => formAdjacent ? `${theme.space(2)}px ${theme.space(6)}px`: `${theme.space(3)}px ${theme.space(6)}px`};
-  color: ${({ theme, color }) => theme.colors[color].text};
-  background-color: ${({ theme, color }) => theme.colors[color].main};
+  color: ${({ theme, color }) => theme.colors[color].main};
+  background: transparent;
   width: ${({ size }) => buttonWidth[size]};
 
   &:hover {
-    background-color: ${({ theme, color }) => theme.colors.hover(theme.colors[color].main)};
+    color: ${({ theme }) => theme.colors.white};
+    background: ${({ theme, color }) => theme.colors[color].main};
   };
   &:disabled {
-    background-color: ${({ theme }) => theme.colors.gray[500]};
-    opacity: 0.4;
+    color: ${({ theme, color }) => theme.colors[color].main};
+    background:transparent;
+    cursor: default;
   };
 `;
