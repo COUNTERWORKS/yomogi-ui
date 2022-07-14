@@ -1,29 +1,63 @@
-import { ComponentStory, ComponentMeta } from '@storybook/react';
+import { Story, ComponentMeta } from '@storybook/react';
 import { FormBlock } from '../FormBlock';
 import { Select } from './Select';
+import { Typograpy } from '../Typograpy';
 
 export default {
   title: 'YOMOGI-UI/Form/Select',
   component: Select,
-  args: {
-    isError: false,
-  },
 } as ComponentMeta<typeof Select>;
 
 
-const Template: ComponentStory<typeof Select> = (args) => (
-  <FormBlock label='名前' hint="hint">
-    <Select {...args} >
-      <option value="1">ほげほげ</option>
-      <option value="2">ほげほげ</option>
-    </Select>
-  </FormBlock>
-);
+const Template: Story = () => {
+  return (
+    <>
+      <div style={{ marginBottom: '24px' }}>
+        <Typograpy as="p" size="small">デフォルト</Typograpy>
+        <FormBlock label='都道府県'>
+          <Select>
+            <option value="1">
+            北海道
+            </option>
+            <option value="2">
+            青森県
+            </option>
+          </Select>
+        </FormBlock>
+      </div>
 
-export const Default = Template.bind({});
+      <div style={{ marginBottom: '24px' }}>
+        <Typograpy as="p" size="small">エラー</Typograpy>
+        <FormBlock label='都道府県' errorMessage="選択してください">
+          <Select isError>
+            <option value="1">
+            北海道
+            </option>
+            <option value="2">
+            青森県
+            </option>
+          </Select>
+        </FormBlock>
+      </div>
 
-export const WithError = Template.bind({});
+      <div style={{ marginBottom: '24px' }}>
+        <Typograpy as="p" size="small">disabled</Typograpy>
+        <FormBlock label='都道府県'>
+          <Select disabled>
+            <option value="1">
+            北海道
+            </option>
+            <option value="2">
+            青森県
+            </option>
+          </Select>
+        </FormBlock>
+      </div>
 
-WithError.args = {
-  isError: true,
+    </>
+  );
 };
+
+
+export const All = Template.bind({});
+

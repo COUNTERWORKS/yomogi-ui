@@ -48,6 +48,11 @@ const Template: Story = () => {
           <Input /><Button size="small" color="secondary" formAdjacent>送信</Button>
         </Flex>
       </div>
+
+      <div style={{ marginBottom: '24px' }}>
+        <Typograpy as="p" size="small">disabled</Typograpy>
+        <Button size="normal" disabled>disabled</Button>
+      </div>
     </>
   );
 };

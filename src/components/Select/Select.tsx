@@ -49,7 +49,7 @@ const StyledSelect = styled.select<{ theme: Theme, isError: boolean }>`
   };
   &:focus {
     outline: none;
-    border-color: ${({ theme }) => theme.colors.secondary.main}
+    border-color: ${({ theme, isError }) => !isError && theme.colors.secondary.main}
   }
 `;
 
