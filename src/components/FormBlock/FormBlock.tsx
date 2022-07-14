@@ -27,7 +27,7 @@ export const FormBlock: FC<Props> = ({ children, hint ='', label = '', className
   );
 };
 
-const StyledFormBlock = styled.label`
+const StyledFormBlock = styled.div`
   position: relative;
   margin: 24px 0 0 0;
   vertical-align: middle;
