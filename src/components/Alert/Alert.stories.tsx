@@ -1,51 +1,29 @@
-import { ComponentStory, ComponentMeta } from '@storybook/react';
+import { Story, ComponentMeta } from '@storybook/react';
 import { Alert } from './Alert';
+import { Typograpy } from '../Typograpy';
 
 export default {
   title: 'YOMOGI-UI/Alert',
   component: Alert,
-  args: {
-    color: 'success',
-    showCloseButton: false,
-    children: 'alert',
-    onClickCloseButton: () => {
-      console.log('click');
-    },
-  },
-  argTypes: {
-    color: {
-      options: ['info', 'success', 'caution', 'error'],
-      control: {
-        type: 'radio',
-      },
-    },
-  },
 } as ComponentMeta<typeof Alert>;
 
+const Template: Story = () => {
+  return (
+    <div>
+      <div style={{ marginBottom: '24px' }}>
+        <Typograpy as="p" size="small">色一覧</Typograpy>
+        <Alert color="info">info</Alert>
+        <Alert color="success">success</Alert>
+        <Alert color="caution">caution</Alert>
+        <Alert color="error">error</Alert>
+      </div>
 
-const Template: ComponentStory<typeof Alert> = (args) => <Alert {...args} />;
-
-export const Info = Template.bind({});
-
-Info.args = {
-  color: 'info',
+      <div style={{ marginBottom: '24px' }}>
+        <Typograpy as="p" size="small">閉じるボタンがある時</Typograpy>
+        <Alert color="info" onClick={() => console.log('click')} showCloseButton>with close button</Alert>
+      </div>
+    </div>
+  );
 };
 
-export const Success = Template.bind({});
-
-Success.args = {
-  color: 'success',
-};
-
-export const Caution = Template.bind({});
-
-Caution.args = {
-  color: 'caution',
-};
-
-export const Error = Template.bind({});
-
-Error.args = {
-  color: 'error',
-};
-
+export const All = Template.bind({});
