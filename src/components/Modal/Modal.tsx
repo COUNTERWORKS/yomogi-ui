@@ -86,7 +86,7 @@ const Content = styled.div<{ theme: Theme; size: Size }>`
   z-index: 20;
   max-height: 80vh;
   ${({ size }) => size === 'full' && `
-    height: 100vh;
+    max-height: 100vh;
     margin: 0;
     border-radius: 0;
   `}
