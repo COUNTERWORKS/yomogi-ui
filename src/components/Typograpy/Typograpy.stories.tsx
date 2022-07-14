@@ -7,7 +7,7 @@ export default {
 } as ComponentMeta<typeof Typograpy>;
 
 
-const Template: ComponentStory<typeof Typograpy> = (args) => {
+const Template: ComponentStory<typeof Typograpy> = () => {
   return (
     <>
       <Typograpy as='h1' size="xlarge">typography</Typograpy>
