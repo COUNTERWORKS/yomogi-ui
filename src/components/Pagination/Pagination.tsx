@@ -11,7 +11,7 @@ type PaginationItemType = {
 
 const buildPaginationItems = (currentPage: number, lastPage: number, gap: number) => {
   const items: PaginationItemType[] = [{ value: '<<', disabled: currentPage === 1, targetPage: 1, type: 'doubleLeft' }, { value: '<', disabled: currentPage === 1, targetPage: currentPage < 1 ? 1 : currentPage - 1, type: 'left' }];
-  if (2 + gap === currentPage ) {
+  if (2 + gap === currentPage) {
     items.push(...Array.from(Array(gap), (_, k) => k + 1).map((value): PaginationItemType => ({
       value: String(value),
       disabled: false,
@@ -89,12 +89,15 @@ const buildPaginationItems = (currentPage: number, lastPage: number, gap: number
   return items;
 };
 
-export const Pagination: FC<{
+type Props = {
   currentPage: number;
   lastPage: number;
+  /** ページネーションに表示する要素の数を決める。現在のページから前後${gap}個を表示する */
   gap?: number;
   onChange: (page: number) => void;
-}> = ({ currentPage, lastPage, onChange, gap = 1 }) => {
+}
+
+export const Pagination: FC<Props> = ({ currentPage, lastPage, onChange, gap = 1 }) => {
   const paginationItems = buildPaginationItems(currentPage, lastPage, gap);
 
   return (
