@@ -1,14 +1,14 @@
 import { ComponentMeta, Story } from '@storybook/react';
-import { Button } from './Button';
+import { OutlineButton } from './OutlineButton';
 import { Typograpy } from '../Typograpy';
 import { Flex } from '../Flex';
 import { Input } from '../Input';
 
 
 export default {
-  title: 'YOMOGI-UI/Button/Button',
-  component: Button,
-} as ComponentMeta<typeof Button>;
+  title: 'YOMOGI-UI/Button/OutlineButton',
+  component: OutlineButton,
+} as ComponentMeta<typeof OutlineButton>;
 
 
 const Template: Story = () => {
@@ -17,11 +17,10 @@ const Template: Story = () => {
       <div style={{ marginBottom: '24px' }}>
         <Typograpy as="p" size="small">色一覧</Typograpy>
         <Flex gap={2}>
-          <Button>primary</Button>
-          <Button color='secondary'>secondary</Button>
-          <Button color='neutral'>neutral</Button>
-          <Button color='light'>light</Button>
-          <Button color='danger'>danger</Button>
+          <OutlineButton>primary</OutlineButton>
+          <OutlineButton color='secondary'>secondary</OutlineButton>
+          <OutlineButton color='neutral'>neutral</OutlineButton>
+          <OutlineButton color='danger'>danger</OutlineButton>
         </Flex>
       </div>
 
@@ -29,23 +28,23 @@ const Template: Story = () => {
         <Typograpy as="p" size="small">サイズ一覧</Typograpy>
         <div style={{ marginBottom: '8px' }}>
           <Flex gap={2}>
-            <Button size="small">small</Button>
-            <Button size="auto">auto</Button>
+            <OutlineButton size="small">small</OutlineButton>
+            <OutlineButton size="auto">auto</OutlineButton>
           </Flex>
         </div>
         <div style={{ marginBottom: '8px' }}>
           <Flex gap={2}>
-            <Button size="normal">normal</Button>
-            <Button size="large">large</Button>
+            <OutlineButton size="normal">normal</OutlineButton>
+            <OutlineButton size="large">large</OutlineButton>
           </Flex>
         </div>
-        <Button size='full'>full</Button>
+        <OutlineButton size='full'>full</OutlineButton>
       </div>
 
       <div style={{ marginBottom: '24px' }}>
         <Typograpy as="p" size="small">formAdjacent</Typograpy>
         <Flex gap={2}>
-          <Input /><Button size="small" color="secondary" formAdjacent>送信</Button>
+          <Input /><OutlineButton size="small" color="secondary" formAdjacent>送信</OutlineButton>
         </Flex>
       </div>
     </>

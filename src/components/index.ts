@@ -11,3 +11,5 @@ export * from './Radio';
 export * from './Select';
 export * from './Textarea';
 export * from './ThemeProvider';
+export * from './Flex';
+export * from './OutlineButton';

@@ -4,15 +4,17 @@ import { useTheme } from '../../hooks';
 import styled from '@emotion/styled';
 
 type ButtonColor = Extract<Color, 'primary' | 'secondary' | 'neutral' | 'danger'>;
-type ButtonSize = 'normal' | 'auto' | 'large' | 'full'
+type ButtonSize = 'small' | 'normal' | 'auto' | 'large' | 'full'
 
 type ButtonProps = {
   color?: ButtonColor;
-  size?: 'normal' | 'auto' | 'large' | 'full',
+  size?: ButtonSize;
+  /** フォームの高さにボタンの高さを合わせる */
   formAdjacent?: boolean;
 }
 
 const buttonWidth = {
+  small: '120px',
   normal: '240px',
   auto: 'auto',
   large: '400px',
@@ -43,7 +45,7 @@ const StyledButton = styled.button<{theme: Theme, color: ButtonColor, size: Butt
 
   &:hover {
     color: ${({ theme }) => theme.colors.white};
-    background: ${({ theme, color }) => theme.colors.hover(theme.colors[color].main)};
+    background: ${({ theme, color }) => theme.colors[color].main};
   };
   &:disabled {
     color: ${({ theme, color }) => theme.colors[color].main};
