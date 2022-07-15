@@ -1,8 +1,7 @@
 
 import React, { ReactNode } from 'react';
 import { css } from '@emotion/react';
-import { Theme, theme as defaultTheme } from '../../themes/theme';
-
+import { CustomTheme, createTheme } from '../../themes/theme';
 
 export const resetStyle = css`
   html,
@@ -257,9 +256,11 @@ export const resetStyle = css`
   }
 `;
 
-export const ThemeContext = React.createContext(defaultTheme);
+export const ThemeContext = React.createContext(createTheme());
 
-export const ThemeProvider:React.FC<{ theme?: Theme, children: ReactNode }>= ({ theme = defaultTheme, children }) => {
+export const ThemeProvider:React.FC<{ customTheme?: CustomTheme, children: ReactNode }>= ({ customTheme, children }) => {
+  const theme = React.useMemo(()=> createTheme(customTheme), [customTheme]);
+
   return (
     <ThemeContext.Provider value={theme}>
       {children}

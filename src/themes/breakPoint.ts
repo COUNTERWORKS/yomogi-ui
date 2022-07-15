@@ -1,9 +1,11 @@
+import { MOBILE, TABLE } from '../constants';
+
 export type BreakPoint = {
   mobile: number;
   tablet: number;
 }
 
 export const defaultBreakPoints: BreakPoint = {
-  mobile: 599,
-  tablet: 1024,
+  mobile: MOBILE,
+  tablet: TABLE,
 };
