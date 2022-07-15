@@ -1,6 +1,9 @@
 import { FC } from 'react';
 import styled from '@emotion/styled';
 import { PaginationItem, CellType } from './PaginationItem';
+import { useWindowSize } from 'react-use';
+import { useTheme } from '../../hooks';
+
 
 type PaginationItemType = {
   value: string;
@@ -9,82 +12,91 @@ type PaginationItemType = {
   type: CellType;
 }
 
-const buildPaginationItems = (currentPage: number, lastPage: number, gap: number) => {
-  const items: PaginationItemType[] = [{ value: '<<', disabled: currentPage === 1, targetPage: 1, type: 'doubleLeft' }, { value: '<', disabled: currentPage === 1, targetPage: currentPage < 1 ? 1 : currentPage - 1, type: 'left' }];
-  if (2 + gap === currentPage) {
-    items.push(...Array.from(Array(gap), (_, k) => k + 1).map((value): PaginationItemType => ({
-      value: String(value),
-      disabled: false,
-      targetPage: value,
-      type: 'value',
-    })));
-  } else if (2 + gap < currentPage) {
-    items.push(...Array.from(Array(gap + 1), (_, k) => currentPage - gap + k - 1).map((value, index): PaginationItemType => {
-      if (index === 0) {
-        return ({
-          value: '...',
-          disabled: true,
-          type: 'dot',
-        });
-      };
-
-      return ({
+const buildPaginationItems = (currentPage: number, lastPage: number, gap: number, isMobile: boolean) => {
+  const items: PaginationItemType[] = [];
+  if (isMobile) {
+    items.push({ value: '<<', disabled: currentPage === 1, targetPage: 1, type: 'doubleLeft' });
+    items.push({ value: '<', disabled: currentPage === 1, targetPage: currentPage < 1 ? 1 : currentPage - 1, type: 'left' });
+    items.push({ value: `${currentPage}/${lastPage}`, disabled: true, type: 'value' });
+    items.push(...[{ value: '>', disabled: currentPage === lastPage, targetPage: currentPage === lastPage ? currentPage : currentPage + 1, type: 'right' }, { value: '>>', disabled: currentPage === lastPage, targetPage: lastPage, type: 'doubleRight' }] as PaginationItemType[]);
+  } else {
+    items.push({ value: '<<', disabled: currentPage === 1, targetPage: 1, type: 'doubleLeft' });
+    items.push({ value: '<', disabled: currentPage === 1, targetPage: currentPage < 1 ? 1 : currentPage - 1, type: 'left' });
+    if (2 + gap === currentPage) {
+      items.push(...Array.from(Array(gap), (_, k) => k + 1).map((value): PaginationItemType => ({
         value: String(value),
         disabled: false,
         targetPage: value,
         type: 'value',
-      });
-    }));
-  } else {
-    items.push(...Array.from(Array(currentPage - 1), (_, k) => k + 1).map((value): PaginationItemType => ({
-      value: String(value),
-      disabled: false,
-      targetPage: value,
-      type: 'value',
-    })));
-  }
+      })));
+    } else if (2 + gap < currentPage) {
+      items.push(...Array.from(Array(gap + 1), (_, k) => currentPage - gap + k - 1).map((value, index): PaginationItemType => {
+        if (index === 0) {
+          return ({
+            value: '...',
+            disabled: true,
+            type: 'dot',
+          });
+        };
 
-  items.push({
-    value: String(currentPage),
-    disabled: true,
-    targetPage: currentPage,
-    type: 'value',
-  });
-
-  if (currentPage + gap === lastPage) {
-    items.push(...Array.from(Array(gap), (_, k) => k + currentPage + 1).map((value): PaginationItemType => ({
-      value: String(value),
-      disabled: false,
-      targetPage: value,
-      type: 'value',
-    })));
-  } else if (currentPage + gap < lastPage) {
-    items.push(...Array.from(Array(gap + 1), (_, k) => k + currentPage+ 1).map((value, index): PaginationItemType => {
-      if (Array(gap + 1).length === index + 1) {
         return ({
-          value: '...',
-          disabled: true,
-          type: 'dot',
+          value: String(value),
+          disabled: false,
+          targetPage: value,
+          type: 'value',
         });
-      };
-
-      return ({
+      }));
+    } else {
+      items.push(...Array.from(Array(currentPage - 1), (_, k) => k + 1).map((value): PaginationItemType => ({
         value: String(value),
         disabled: false,
         targetPage: value,
         type: 'value',
-      });
-    }));
-  } else {
-    items.push(...Array.from(Array(lastPage - currentPage), (_, k) => k + currentPage + 1).map((value): PaginationItemType => ({
-      value: String(value),
-      disabled: false,
-      targetPage: value,
-      type: 'value',
-    })));
-  }
+      })));
+    }
 
-  items.push(...[{ value: '>', disabled: currentPage === lastPage, targetPage: currentPage === lastPage ? currentPage : currentPage + 1, type: 'right' }, { value: '>>', disabled: currentPage === lastPage, targetPage: lastPage, type: 'doubleRight' }] as PaginationItemType[]);
+    items.push({
+      value: String(currentPage),
+      disabled: true,
+      targetPage: currentPage,
+      type: 'value',
+    });
+
+    if (currentPage + gap === lastPage) {
+      items.push(...Array.from(Array(gap), (_, k) => k + currentPage + 1).map((value): PaginationItemType => ({
+        value: String(value),
+        disabled: false,
+        targetPage: value,
+        type: 'value',
+      })));
+    } else if (currentPage + gap < lastPage) {
+      items.push(...Array.from(Array(gap + 1), (_, k) => k + currentPage+ 1).map((value, index): PaginationItemType => {
+        if (Array(gap + 1).length === index + 1) {
+          return ({
+            value: '...',
+            disabled: true,
+            type: 'dot',
+          });
+        };
+
+        return ({
+          value: String(value),
+          disabled: false,
+          targetPage: value,
+          type: 'value',
+        });
+      }));
+    } else {
+      items.push(...Array.from(Array(lastPage - currentPage), (_, k) => k + currentPage + 1).map((value): PaginationItemType => ({
+        value: String(value),
+        disabled: false,
+        targetPage: value,
+        type: 'value',
+      })));
+    }
+
+    items.push(...[{ value: '>', disabled: currentPage === lastPage, targetPage: currentPage === lastPage ? currentPage : currentPage + 1, type: 'right' }, { value: '>>', disabled: currentPage === lastPage, targetPage: lastPage, type: 'doubleRight' }] as PaginationItemType[]);
+  }
 
   return items;
 };
@@ -98,7 +110,9 @@ type Props = {
 }
 
 export const Pagination: FC<Props> = ({ currentPage, lastPage, onChange, gap = 1 }) => {
-  const paginationItems = buildPaginationItems(currentPage, lastPage, gap);
+  const theme = useTheme();
+  const { width } = useWindowSize();
+  const paginationItems = buildPaginationItems(currentPage, lastPage, gap, width <= theme.breakPoints.mobile);
 
   return (
     <Container>
