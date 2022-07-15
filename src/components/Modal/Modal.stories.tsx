@@ -44,25 +44,25 @@ const Template: Story = () => {
       <Modal isOpen={isOpenSmallModal} size="small" onClose={toggleSmallModal}>
         <ModalHeader onClose={toggleSmallModal}>hoge</ModalHeader>
         <ModalBody><Text /></ModalBody>
-        <ModalFooter justify='end'><Button>ok</Button></ModalFooter>
+        <ModalFooter justify='end'><Button size="small">ok</Button></ModalFooter>
       </Modal>
 
       <Modal isOpen={isOpenMediumModal} size="medium" onClose={toggleMediumModal}>
         <ModalHeader onClose={toggleMediumModal}>hoge</ModalHeader>
         <ModalBody><Text /></ModalBody>
-        <ModalFooter justify='end'><Button>ok</Button></ModalFooter>
+        <ModalFooter justify='end'><Button size="small">ok</Button></ModalFooter>
       </Modal>
 
       <Modal isOpen={isOpenLargeModal} size="large" onClose={toggleLargeModal}>
         <ModalHeader onClose={toggleLargeModal}>hoge</ModalHeader>
         <ModalBody><Text /></ModalBody>
-        <ModalFooter justify='end'><Button>ok</Button></ModalFooter>
+        <ModalFooter justify='end'><Button size="small">ok</Button></ModalFooter>
       </Modal>
 
       <Modal isOpen={isOpenFullModal} size="full" onClose={toggleFullModal}>
         <ModalHeader onClose={toggleFullModal}>hoge</ModalHeader>
         <ModalBody><Text /></ModalBody>
-        <ModalFooter justify='end'><Button>ok</Button></ModalFooter>
+        <ModalFooter justify='end'><Button size="small">ok</Button></ModalFooter>
       </Modal>
     </div>
   );
