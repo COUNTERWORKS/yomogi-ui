@@ -23,11 +23,11 @@ const fontSize = {
 };
 
 const spFontSize = {
-  'xsmall': 16,
-  'small': 18,
-  'medium': 24,
-  'large': 30,
-  'xlarge': 42,
+  'xsmall': 14,
+  'small': 14,
+  'medium': 18,
+  'large': 21,
+  'xlarge': 24,
 };
 
 export const Typograpy: React.FC<Props> = ({ children, as, size = 'medium', className }) => {
