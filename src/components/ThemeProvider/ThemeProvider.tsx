@@ -256,14 +256,14 @@ export const resetStyle = css`
   }
 `;
 
-export const ThemeContext = React.createContext(createTheme());
+export const YomogiThemeContext = React.createContext(createTheme());
 
-export const ThemeProvider:React.FC<{ customTheme?: CustomTheme, children: ReactNode }>= ({ customTheme, children }) => {
+export const YomogiThemeProvider: React.FC<{ customTheme?: CustomTheme, children: ReactNode }>= ({ customTheme, children }) => {
   const theme = React.useMemo(()=> createTheme(customTheme), [customTheme]);
 
   return (
-    <ThemeContext.Provider value={theme}>
+    <YomogiThemeContext.Provider value={theme}>
       {children}
-    </ThemeContext.Provider>
+    </YomogiThemeContext.Provider>
   );
 };
