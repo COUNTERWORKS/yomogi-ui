@@ -1,13 +1,13 @@
 {
   "name": "@counterworks/yomogi-ui",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "author": "Tsukuni <tamkchi.fugu@gmail.com>",
   "description": "yomogi design system",
   "repository": "git://github.com/COUNTERWORKS/yomogi-ui.git",
   "publishConfig": {
-    "registry": "https://npm.pkg.github.com"
+    "registry": "https://npm.pkg.github.com/"
   },
   "bugs": {
     "url": "https://github.com/COUNTERWORKS/yomogi-ui/issues"
