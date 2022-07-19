@@ -7,7 +7,7 @@
   "description": "yomogi design system",
   "repository": "git://github.com/COUNTERWORKS/yomogi-ui.git",
   "publishConfig": {
-    "registry": "https://npm.pkg.github.com/"
+    "registry": "https://npm.pkg.github.com/counterworks"
   },
   "bugs": {
     "url": "https://github.com/COUNTERWORKS/yomogi-ui/issues"

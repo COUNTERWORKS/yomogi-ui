@@ -1,4 +1,4 @@
-import { ThemeProvider, resetStyle } from '../src/components'
+import { YomogiThemeProvider, resetStyle } from '../src/components'
 import { Global } from '@emotion/react'
 
 export const parameters = {
@@ -13,9 +13,9 @@ export const parameters = {
 
 export const decorators = [
   (Story) => (
-    <ThemeProvider>
+    <YomogiThemeProvider>
       <Global styles={resetStyle} />
       <Story />
-    </ThemeProvider>
+    </YomogiThemeProvider>
   ),
 ];
