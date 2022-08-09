@@ -1,34 +1,32 @@
-import { FC, ComponentPropsWithRef, ReactNode } from 'react';
+import { ComponentPropsWithRef, ReactNode, forwardRef } from 'react';
 import { useTheme } from '../../hooks';
 import styled from '@emotion/styled';
 import { Theme } from '../../themes';
-import { VscChevronDown } from 'react-icons/vsc';
 
 type Props = {
   isError?: boolean;
   children: ReactNode;
-}
+  className?: string;
+} & ComponentPropsWithRef<'select'>
 
-export const Select: FC<ComponentPropsWithRef<'select'> & Props> = ({ className = '', isError = false, children, ...props }) => {
+export const Select = forwardRef<HTMLSelectElement, Props >(({ isError = false, children, className, ...props }, ref) => {
   const theme = useTheme();
 
   return (
-    <Container className={className}>
+    <Container theme={theme} className={className}>
       <StyledSelect
+        {...props}
+        ref={ref}
         isError={isError}
         theme={theme}
-        {...props}
       >
         {children}
       </StyledSelect>
-      <VscChevronDown size={22} color={'#414141'} style={{
-        position: 'absolute',
-        top: 8,
-        right: 8,
-      }}/>
     </Container>
   );
-};
+});
+
+Select.displayName = 'Select';
 
 const StyledSelect = styled.select<{ theme: Theme, isError: boolean }>`
   max-height: 39px;
@@ -44,6 +42,7 @@ const StyledSelect = styled.select<{ theme: Theme, isError: boolean }>`
   min-height: 39px;
   font-size: 14px;
   color: ${({ theme }) => theme.colors.text};
+  appearance: none;
   &:disabled {
     background: ${({ theme }) => theme.colors.gray[100]}
   };
@@ -53,8 +52,22 @@ const StyledSelect = styled.select<{ theme: Theme, isError: boolean }>`
   }
 `;
 
-const Container = styled.div`
+const Container = styled.div<{ theme: Theme }>`
   position: relative;
+  &:after {
+    content: "";
+    position: absolute;
+    right: 16px;
+    top: 17px;
+    width: 8px;
+    height: 8px;
+    border-top: ${({ theme }) => `1px solid ${theme.colors.text}`};
+    border-left: ${({ theme }) => `1px solid ${theme.colors.text}`};
+    transform: translateY(-50%) rotate(-135deg);
+    font-size: 14px;
+    pointer-events: none;
+    font-weight: 400;
+  }
 `;
 
 

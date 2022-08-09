@@ -1,4 +1,4 @@
-import { FC, ComponentPropsWithRef } from 'react';
+import { ComponentPropsWithRef, forwardRef } from 'react';
 import { useTheme } from '../../hooks';
 import styled from '@emotion/styled';
 import { Theme } from '../../themes';
@@ -6,19 +6,22 @@ import { Theme } from '../../themes';
 type Props = {
   id: string;
   label: string;
-}
+  className?: string;
+} & ComponentPropsWithRef<'input'>
 
-export const Radio: FC<ComponentPropsWithRef<'input'> & Props> = ({ id, label, className = '', ...props }) => {
+export const Radio = forwardRef<HTMLInputElement, Props>(({ id, label, className = '', ...props }, ref) => {
   const theme = useTheme();
   return (
     <Container className={className}>
-      <Input id={id} {...props} type="radio" theme={theme}/>
+      <Input {...props} id={id} ref={ref} type="radio" theme={theme}/>
       <Label htmlFor={id} theme={theme}>
         {label}
       </Label>
     </Container>
   );
-};
+});
+
+Radio.displayName = 'Radio';
 
 const Container = styled.div`
   padding: 4px 8px;

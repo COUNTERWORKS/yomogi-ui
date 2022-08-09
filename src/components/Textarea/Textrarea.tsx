@@ -1,24 +1,28 @@
-import { FC, ComponentPropsWithRef } from 'react';
+import { ComponentPropsWithRef, forwardRef } from 'react';
 import { useTheme } from '../../hooks';
 import styled from '@emotion/styled';
 import { Theme } from '../../themes';
 
 type Props = {
   isError?: boolean;
-}
+  className?: string;
+} & ComponentPropsWithRef<'textarea'>
 
-export const Textarea: FC<ComponentPropsWithRef<'textarea'> & Props> = ({ className = '', isError = false, ...props }) => {
+export const Textarea = forwardRef<HTMLTextAreaElement, Props>(({ className = '', isError = false, ...props }, ref) => {
   const theme = useTheme();
 
   return (
     <StyledTextarea
+      {...props}
+      ref={ref}
       isError={isError}
       theme={theme}
       className={className}
-      {...props}
     />
   );
-};
+});
+
+Textarea.displayName = 'Textarea';
 
 const StyledTextarea = styled.textarea<{ theme: Theme, isError: boolean }>`
   position: relative;

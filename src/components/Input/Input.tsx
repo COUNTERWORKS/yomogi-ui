@@ -1,24 +1,27 @@
-import { FC, ComponentPropsWithRef } from 'react';
+import { ComponentPropsWithRef, forwardRef } from 'react';
 import { useTheme } from '../../hooks';
 import styled from '@emotion/styled';
 import { Theme } from '../../themes';
 
 type Props = {
   isError?: boolean;
-}
+  className?: string;
+} & ComponentPropsWithRef<'input'>;
 
-export const Input: FC<ComponentPropsWithRef<'input'> & Props> = ({ className = '', isError = false, ...props }) => {
+export const Input = forwardRef<HTMLInputElement, Props>(({ isError = false, className = '', ...props }, ref) => {
   const theme = useTheme();
 
   return (
     <StyledInput
+      {...props}
+      ref={ref}
       isError={isError}
       theme={theme}
-      className={className}
-      {...props}
     />
   );
-};
+});
+
+Input.displayName = 'Input';
 
 const StyledInput = styled.input<{ theme: Theme, isError: boolean }>`
   position: relative;
