@@ -14,4 +14,4 @@ export * from './Radio';
 export * from './Select';
 export * from './Textarea';
 export * from './ThemeProvider';
-export * from './Typograpy';
+export * from './Typography';
