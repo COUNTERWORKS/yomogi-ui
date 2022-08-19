@@ -245,7 +245,7 @@ export const resetStyle = css`
   }
 
   textarea {
-    min-height: calc(4 * 1.5 * 1rem);
+    min-height: calc(4 * 1.5 * 10px);
   }
 
   img {

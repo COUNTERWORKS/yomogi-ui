@@ -29,11 +29,11 @@ const Container = styled.div`
 `;
 
 const Label = styled.label<{ theme: Theme }>`
-  min-height: 1.7rem;
+  min-height: 17px;
   position: relative;
   display: inline-block;
   margin: 0;
-  padding-left: 2.5rem;
+  padding-left: 25px;
   &:hover {
     cursor: pointer;
   }
@@ -41,8 +41,8 @@ const Label = styled.label<{ theme: Theme }>`
     position: absolute;
     top: 2px;
     left: 0;
-    width: 1.7rem;
-    height: 1.7rem;
+    width: 17px;
+    height: 17px;
     border: ${({ theme }) => `solid 2px ${theme.colors.border}`};
     background-color: ${({ theme }) => theme.colors.white};
     content: '';
