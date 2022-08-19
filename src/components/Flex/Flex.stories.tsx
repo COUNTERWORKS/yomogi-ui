@@ -1,6 +1,6 @@
 import { Story, ComponentMeta } from '@storybook/react';
 import { Flex } from './Flex';
-import { Typograpy } from '../Typograpy';
+import { Typography } from '../Typography';
 import { useTheme } from '../../hooks';
 
 export default {
@@ -14,9 +14,9 @@ const Template: Story = () => {
   return (
     <>
       <div style={{ marginBottom: '24px' }}>
-        <Typograpy as="h3" size="small">
+        <Typography as="h3" size="small">
           justify
-        </Typograpy>
+        </Typography>
         <p>start</p>
         <Flex justify="start" style={{ border: `1px solid ${theme.colors.border}`, height: '60px' }}>
           <div style={{ background: theme.colors.primary.main, width: '100px', height: '30px' }}></div>
@@ -43,9 +43,9 @@ const Template: Story = () => {
       </div>
 
       <div style={{ marginBottom: '24px' }}>
-        <Typograpy as="h3" size="small">
+        <Typography as="h3" size="small">
           align
-        </Typograpy>
+        </Typography>
         <p>baseline</p>
         <Flex justify="center" align="baseline" style={{ border: `1px solid ${theme.colors.border}`, height: '60px' }}>
           <div style={{ background: theme.colors.primary.main, width: '100px', height: '30px' }}></div>
@@ -66,9 +66,9 @@ const Template: Story = () => {
       </div>
 
       <div style={{ marginBottom: '24px' }}>
-        <Typograpy as="h3" size="small">
+        <Typography as="h3" size="small">
           gap
-        </Typograpy>
+        </Typography>
         <p>gap: 1</p>
         <Flex justify="center" align="center" gap={1} style={{ border: `1px solid ${theme.colors.border}`, height: '60px' }}>
           <div style={{ background: theme.colors.primary.main, width: '100px', height: '30px' }}></div>
