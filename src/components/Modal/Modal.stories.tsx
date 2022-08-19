@@ -2,7 +2,7 @@ import { Story, ComponentMeta } from '@storybook/react';
 import { Modal, ModalHeader, ModalBody, ModalFooter } from './';
 import { useToggle } from 'react-use';
 import { Button } from '../Button';
-import { Typograpy } from '../Typograpy';
+import { Typography } from '../Typography';
 import { Flex } from '../Flex';
 import React from 'react';
 
@@ -25,7 +25,7 @@ const Template: Story = () => {
   const [isOpenFullModal, toggleFullModal] = useToggle(false);
   return (
     <div>
-      <Typograpy as="p" size="small">all</Typograpy>
+      <Typography as="p" size="small">all</Typography>
       <div style={{ marginBottom: '8px' }}>
         <Flex gap={2}>
           <Button onClick={toggleSmallModal}>small</Button>

@@ -1,6 +1,6 @@
 import { Story, ComponentMeta } from '@storybook/react';
 import { Badge } from './Badge';
-import { Typograpy } from '../Typograpy';
+import { Typography } from '../Typography';
 import { Flex } from '../Flex';
 
 
@@ -13,7 +13,7 @@ export default {
 const Template: Story = () => {
   return (
     <div>
-      <Typograpy as="h3" size="small">色一覧</Typograpy>
+      <Typography as="h3" size="small">色一覧</Typography>
       <Flex gap={1}>
         <Badge color="primary">primary</Badge>
         <Badge color="secondary">secondary</Badge>

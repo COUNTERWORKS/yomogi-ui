@@ -30,7 +30,7 @@ const spFontSize = {
   'xlarge': 24,
 };
 
-export const Typograpy: React.FC<Props> = ({ children, as, size = 'medium', className }) => {
+export const Typography: React.FC<Props> = ({ children, as, size = 'medium', className }) => {
   const theme = useTheme();
   return (
     <Container as={as} size={size} theme={theme} className={className}>

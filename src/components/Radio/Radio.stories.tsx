@@ -2,7 +2,7 @@ import { Story, ComponentMeta } from '@storybook/react';
 import { FormBlock } from '../FormBlock';
 import { Radio } from './Radio';
 import { Flex } from '../Flex';
-import { Typograpy } from '../Typograpy';
+import { Typography } from '../Typography';
 
 export default {
   title: 'YOMOGI-UI/Form/Radio',
@@ -14,7 +14,7 @@ const Template: Story = () => {
   return (
     <>
       <div style={{ marginBottom: '24px' }}>
-        <Typograpy as="p" size="small">デフォルト</Typograpy>
+        <Typography as="p" size="small">デフォルト</Typography>
         <FormBlock label='好きな食べ物'>
           <Flex onChange={(e) => {
             const { value } = e.target as any;
@@ -27,7 +27,7 @@ const Template: Story = () => {
       </div>
 
       <div style={{ marginBottom: '24px' }}>
-        <Typograpy as="p" size="small">エラー</Typograpy>
+        <Typography as="p" size="small">エラー</Typography>
         <FormBlock label='好きな食べ物' errorMessage='選択してください'>
           <Flex onChange={(e) => {
             const { value } = e.target as any;

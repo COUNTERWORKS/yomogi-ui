@@ -1,6 +1,6 @@
 import { ComponentMeta, Story } from '@storybook/react';
 import { OutlineButton } from './OutlineButton';
-import { Typograpy } from '../Typograpy';
+import { Typography } from '../Typography';
 import { Flex } from '../Flex';
 import { Input } from '../Input';
 
@@ -15,7 +15,7 @@ const Template: Story = () => {
   return (
     <>
       <div style={{ marginBottom: '24px' }}>
-        <Typograpy as="p" size="small">色一覧</Typograpy>
+        <Typography as="p" size="small">色一覧</Typography>
         <Flex gap={2}>
           <OutlineButton>primary</OutlineButton>
           <OutlineButton color='secondary'>secondary</OutlineButton>
@@ -25,7 +25,7 @@ const Template: Story = () => {
       </div>
 
       <div style={{ marginBottom: '24px' }}>
-        <Typograpy as="p" size="small">サイズ一覧</Typograpy>
+        <Typography as="p" size="small">サイズ一覧</Typography>
         <div style={{ marginBottom: '8px' }}>
           <Flex gap={2}>
             <OutlineButton size="small">small</OutlineButton>
@@ -42,7 +42,7 @@ const Template: Story = () => {
       </div>
 
       <div style={{ marginBottom: '24px' }}>
-        <Typograpy as="p" size="small">formAdjacent</Typograpy>
+        <Typography as="p" size="small">formAdjacent</Typography>
         <Flex gap={2}>
           <Input /><OutlineButton size="small" color="secondary" formAdjacent>送信</OutlineButton>
         </Flex>

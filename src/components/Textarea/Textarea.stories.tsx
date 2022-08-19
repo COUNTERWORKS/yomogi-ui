@@ -1,7 +1,7 @@
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 import { FormBlock } from '../FormBlock';
 import { Textarea } from './Textrarea';
-import { Typograpy } from '../Typograpy';
+import { Typography } from '../Typography';
 
 export default {
   title: 'YOMOGI-UI/Form/Textarea',
@@ -13,13 +13,13 @@ const Template: ComponentStory<typeof Textarea> = () => {
   return (
     <>
       <div style={{ marginBottom: '24px' }}>
-        <Typograpy as="p" size="small">デフォルト</Typograpy>
+        <Typography as="p" size="small">デフォルト</Typography>
         <FormBlock label='詳細'>
           <Textarea />
         </FormBlock>
       </div>
       <div style={{ marginBottom: '24px' }}>
-        <Typograpy as="p" size="small">エラー時</Typograpy>
+        <Typography as="p" size="small">エラー時</Typography>
         <FormBlock label='詳細' errorMessage="入力してください">
           <Textarea isError />
         </FormBlock>

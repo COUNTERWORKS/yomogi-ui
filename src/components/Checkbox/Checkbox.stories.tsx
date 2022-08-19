@@ -2,7 +2,7 @@ import { Story, ComponentMeta } from '@storybook/react';
 import { FormBlock } from '../FormBlock';
 import { Checkbox } from './Checkbox';
 import { Flex } from '../Flex';
-import { Typograpy } from '../Typograpy';
+import { Typography } from '../Typography';
 
 export default {
   title: 'YOMOGI-UI/Form/Checkbox',
@@ -14,7 +14,7 @@ const Template: Story = () => {
   return (
     <>
       <div style={{ marginBottom: '24px' }}>
-        <Typograpy as="p" size="small">デフォルト</Typograpy>
+        <Typography as="p" size="small">デフォルト</Typography>
         <FormBlock label='好きな食べ物'>
           <Flex>
             <Checkbox id="apple" name="food" label="りんご" value="apple" />
@@ -23,7 +23,7 @@ const Template: Story = () => {
         </FormBlock>
       </div>
       <div style={{ marginBottom: '24px' }}>
-        <Typograpy as="p" size="small">エラー</Typograpy>
+        <Typography as="p" size="small">エラー</Typography>
         <FormBlock label='好きな食べ物' errorMessage='エラーが発生しました'>
           <Flex>
             <Checkbox id="apple-2" name="food-2" label="りんご" value="apple" />

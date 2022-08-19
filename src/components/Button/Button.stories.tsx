@@ -1,6 +1,6 @@
 import { ComponentMeta, Story } from '@storybook/react';
 import { Button } from './Button';
-import { Typograpy } from '../Typograpy';
+import { Typography } from '../Typography';
 import { Flex } from '../Flex';
 import { Input } from '../Input';
 
@@ -15,7 +15,7 @@ const Template: Story = () => {
   return (
     <>
       <div style={{ marginBottom: '24px' }}>
-        <Typograpy as="p" size="small">色一覧</Typograpy>
+        <Typography as="p" size="small">色一覧</Typography>
         <Flex gap={2}>
           <Button>primary</Button>
           <Button color='secondary'>secondary</Button>
@@ -26,7 +26,7 @@ const Template: Story = () => {
       </div>
 
       <div style={{ marginBottom: '24px' }}>
-        <Typograpy as="p" size="small">サイズ一覧</Typograpy>
+        <Typography as="p" size="small">サイズ一覧</Typography>
         <div style={{ marginBottom: '8px' }}>
           <Flex gap={2}>
             <Button size="small">small</Button>
@@ -43,14 +43,14 @@ const Template: Story = () => {
       </div>
 
       <div style={{ marginBottom: '24px' }}>
-        <Typograpy as="p" size="small">formAdjacent</Typograpy>
+        <Typography as="p" size="small">formAdjacent</Typography>
         <Flex gap={2}>
           <Input /><Button size="small" color="secondary" formAdjacent>送信</Button>
         </Flex>
       </div>
 
       <div style={{ marginBottom: '24px' }}>
-        <Typograpy as="p" size="small">disabled</Typograpy>
+        <Typography as="p" size="small">disabled</Typography>
         <Button size="normal" disabled>disabled</Button>
       </div>
     </>

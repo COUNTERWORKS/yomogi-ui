@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 import { Pagination } from './Pagination';
-import { Typograpy } from '../Typograpy';
+import { Typography } from '../Typography';
 
 export default {
   title: 'YOMOGI-UI/Pagination',
@@ -15,7 +15,7 @@ const Template: ComponentStory<typeof Pagination> = () => {
   return (
     <>
       <div style={{ marginBottom: '24px' }}>
-        <Typograpy as="p" size="small">ALL</Typograpy>
+        <Typography as="p" size="small">ALL</Typography>
         <p>gap: 1</p>
         <Pagination
           currentPage={page}

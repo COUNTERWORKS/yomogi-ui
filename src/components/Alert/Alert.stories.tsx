@@ -1,6 +1,6 @@
 import { Story, ComponentMeta } from '@storybook/react';
 import { Alert } from './Alert';
-import { Typograpy } from '../Typograpy';
+import { Typography } from '../Typography';
 
 export default {
   title: 'YOMOGI-UI/Alert',
@@ -11,7 +11,7 @@ const Template: Story = () => {
   return (
     <div>
       <div style={{ marginBottom: '24px' }}>
-        <Typograpy as="p" size="small">色一覧</Typograpy>
+        <Typography as="p" size="small">色一覧</Typography>
         <Alert color="info">info</Alert>
         <Alert color="success">success</Alert>
         <Alert color="caution">caution</Alert>
@@ -19,7 +19,7 @@ const Template: Story = () => {
       </div>
 
       <div style={{ marginBottom: '24px' }}>
-        <Typograpy as="p" size="small">閉じるボタンがある時</Typograpy>
+        <Typography as="p" size="small">閉じるボタンがある時</Typography>
         <Alert color="info" onClick={() => console.log('click')} showCloseButton>with close button</Alert>
       </div>
     </div>
