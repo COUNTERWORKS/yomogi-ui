@@ -11,7 +11,7 @@ export const Hint: FC<ComponentPropsWithRef<'p'>> = ({ children, ...props }) => 
 
 const StyledHint = styled.p<{theme: Theme }>`
   display: block;
-  font-size: 12px;
+  font-size: 14px;
   color: ${({ theme }) => theme.colors.gray[400]};
   margin: 4px 0;
 `;
