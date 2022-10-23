@@ -30,6 +30,7 @@ const Container = styled.div<{ theme: Theme; sticky: boolean }>`
   border-bottom: ${({ theme }) => `solid 1px ${theme.colors.border}`};
   background: ${({ theme }) => theme.colors.white};
   top: 0;
+  z-index: 20;
 `;
 
 const StyledIcon = styled(MdClose)<{ theme: Theme }>`

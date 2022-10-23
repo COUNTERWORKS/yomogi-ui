@@ -17,6 +17,7 @@ export const Input = forwardRef<HTMLInputElement, Props>(({ isError = false, cla
       ref={ref}
       isError={isError}
       theme={theme}
+      className={className}
     />
   );
 });
@@ -29,7 +30,7 @@ const StyledInput = styled.input<{ theme: Theme, isError: boolean }>`
   background: ${({ theme }) => theme.colors.white};
   border: ${({ theme, isError }) => `solid 1px ${isError ? theme.colors.red[700] : theme.colors.border}`};
   border-radius: 3px;
-  padding: 10px 12px;
+  padding: 8px 12px;
   width: 100%;
   box-sizing: border-box;
   min-height: 39px;
