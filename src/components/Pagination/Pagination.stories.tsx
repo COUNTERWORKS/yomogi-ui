@@ -49,6 +49,25 @@ const Template: ComponentStory<typeof Pagination> = () => {
         />
       </div>
 
+      <div style={{ marginBottom: '24px' }}>
+        <p>gap: 3, enable anchorHrefRouterParams option</p>
+        <Pagination
+          currentPage={page}
+          lastPage={1000}
+          onChange={(page) => {
+            setPage(page);
+          }}
+          gap={3}
+          enabledAnchorHref
+          anchorHrefParams={
+            {
+              pathname: `https://shopcounter.jp/prefectures/tokyo?page={pageParams}`,
+              replaceTarget: 'pageParams',
+            }
+          }
+        />
+      </div>
+
     </>
   );
 };
