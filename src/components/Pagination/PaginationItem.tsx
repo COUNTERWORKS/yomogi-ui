@@ -43,20 +43,24 @@ export const PaginationItem: FC<Props> = ({ type, value, targetPage, onClick, di
     return '';
   }, [anchorHrefParams, enabledAnchorHref, targetPage]);
 
+  if (enabledAnchorHref) {
+    return (
+      <Cell disabled={disabled} theme={theme} enabledAnchor={enabledAnchorHref}>
+        <CellLink href={pageUrl}>{paginationChildren[type]}</CellLink>
+      </Cell>
+    );
+  }
+
   return (
     <Cell onClick={() => !disabled && onClick()} disabled={disabled} theme={theme} enabledAnchor={enabledAnchorHref}>
-      {
-        enabledAnchorHref ? (
-          <CellLink href={pageUrl}>{paginationChildren[type]}</CellLink>
-        ) : paginationChildren[type]
-      }
+      { paginationChildren[type] }
     </Cell>
   );
 };
 
 PaginationItem.displayName = 'PaginationItem';
 
-const Cell = styled.div<{ theme: Theme; disabled: boolean, enabledAnchor: boolean }>`
+const Cell = styled.li<{ theme: Theme; disabled: boolean, enabledAnchor: boolean }>`
   font-size: 14px;
   position: relative;
   padding: ${({ enabledAnchor }) => enabledAnchor ? '0px' : '12px 16px' };
