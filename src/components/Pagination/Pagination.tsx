@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import React, { FC } from 'react';
 import styled from '@emotion/styled';
 import { PaginationItem, CellType } from './PaginationItem';
 import { useWindowSize } from 'react-use';
@@ -133,7 +133,9 @@ type Props = {
   anchorHrefParams?: anchorHrefParamsType;
 }
 
-export const Pagination: FC<Props> = ({ currentPage, lastPage, onChange, gap = 1, enabledAnchorHref = false, anchorHrefParams }) => {
+export const Pagination: FC<Props> = React.memo((props: Props) => {
+  const { currentPage, lastPage, onChange, gap = 1, enabledAnchorHref = false, anchorHrefParams } = props;
+
   const theme = useTheme();
   const { width } = useWindowSize();
   const paginationItems = buildPaginationItems(currentPage, lastPage, gap, width <= theme.breakPoints.mobile, enabledAnchorHref);
@@ -153,8 +155,9 @@ export const Pagination: FC<Props> = ({ currentPage, lastPage, onChange, gap = 1
       ))}
     </Container>
   );
-};
+});
 
+Pagination.displayName = 'Pagination';
 
 const Container = styled.ul`
   display: flex;
