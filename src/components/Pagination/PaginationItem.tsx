@@ -1,8 +1,9 @@
-import { FC } from 'react';
+import { FC, useMemo } from 'react';
 import styled from '@emotion/styled';
 import { css } from '@emotion/react';
 import { useTheme } from '../../hooks';
 import { Theme } from '../../themes';
+import { anchorHrefParamsType } from '../Pagination';
 import { HiChevronDoubleLeft, HiChevronDoubleRight, HiChevronLeft, HiChevronRight, HiDotsHorizontal } from 'react-icons/hi';
 
 export type CellType = 'value' | 'doubleLeft' | 'left' | 'doubleRight' | 'right' | 'dot';
@@ -10,8 +11,11 @@ export type CellType = 'value' | 'doubleLeft' | 'left' | 'doubleRight' | 'right'
 type Props = {
   type: CellType;
   value: string;
+  targetPage?: number;
   onClick: () => void;
   disabled?: boolean;
+  enabledAnchorHref: boolean;
+  anchorHrefParams?: anchorHrefParamsType;
 }
 
 const buildChildren = (value: string) => {
@@ -26,20 +30,40 @@ const buildChildren = (value: string) => {
 };
 
 
-export const PaginationItem: FC<Props> = ({ type, value, onClick, disabled = false }) => {
+export const PaginationItem: FC<Props> = ({ type, value, targetPage, onClick, disabled = false, enabledAnchorHref = false, anchorHrefParams }) => {
   const theme = useTheme();
   const paginationChildren = buildChildren(value);
+  const pageUrl = useMemo(() => {
+    if (enabledAnchorHref && targetPage && anchorHrefParams) {
+      const regExp = new RegExp(`{${anchorHrefParams.replaceTarget}}`);
+      const url = anchorHrefParams.pathname.replace(regExp, targetPage.toString());
+      return url;
+    }
+
+    return '';
+  }, [anchorHrefParams, enabledAnchorHref, targetPage]);
+
+  if (enabledAnchorHref) {
+    return (
+      <Cell disabled={disabled} theme={theme} enabledAnchor={enabledAnchorHref}>
+        <CellLink href={pageUrl}>{paginationChildren[type]}</CellLink>
+      </Cell>
+    );
+  }
+
   return (
-    <Cell onClick={() => !disabled && onClick()} disabled={disabled} theme={theme}>{paginationChildren[type]}</Cell>
+    <Cell onClick={() => !disabled && onClick()} disabled={disabled} theme={theme} enabledAnchor={enabledAnchorHref}>
+      { paginationChildren[type] }
+    </Cell>
   );
 };
 
 PaginationItem.displayName = 'PaginationItem';
 
-const Cell = styled.div<{ theme: Theme; disabled: boolean }>`
+const Cell = styled.li<{ theme: Theme; disabled: boolean, enabledAnchor: boolean }>`
   font-size: 14px;
   position: relative;
-  padding: 12px 16px;
+  padding: ${({ enabledAnchor }) => enabledAnchor ? '0px' : '12px 16px' };
   height: 42px;
   box-sizing: border-box;
   margin-left: -1px;
@@ -67,5 +91,17 @@ const Cell = styled.div<{ theme: Theme; disabled: boolean }>`
           color: ${theme.colors.white};
         `
 }
+  }
+`;
+
+const CellLink = styled.a`
+  color: inherit;
+  display: flex;
+  padding: 12px 16px;
+  transition: none;
+  &:hover {
+    text-decoration: none;
+    color: inherit;
+    cursor: inherit;
   }
 `;
