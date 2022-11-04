@@ -71,7 +71,7 @@ const Container = styled.div<{ isOpen: Boolean; }>`
   top: 0;
   left: 0;
   margin: 0;
-  z-index: 10;
+  z-index: 9999;
   animation: ${animation} 0.1s ease 1;
 `;
 
