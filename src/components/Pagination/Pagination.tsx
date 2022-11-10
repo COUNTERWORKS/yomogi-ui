@@ -31,6 +31,7 @@ const buildPaginationItems = (currentPage: number, lastPage: number, gap: number
 
   items.push({ value: '<<', disabled: currentPage === 1, targetPage: 1, type: 'doubleLeft', enabledAnchorHref });
   items.push({ value: '<', disabled: currentPage === 1, targetPage: currentPage < 1 ? 1 : currentPage - 1, type: 'left', enabledAnchorHref });
+
   if (2 + gap === currentPage) {
     items.push(...Array.from(Array(gap), (_, k) => k + 1).map((value): PaginationItemType => ({
       value: String(value),
@@ -103,6 +104,7 @@ const buildPaginationItems = (currentPage: number, lastPage: number, gap: number
         enabledAnchorHref,
       });
     }));
+    items.push({ value: String(lastPage), disabled: currentPage === lastPage, targetPage: lastPage, type: 'value', enabledAnchorHref });
   } else {
     items.push(...Array.from(Array(lastPage - currentPage), (_, k) => k + currentPage + 1).map((value): PaginationItemType => ({
       value: String(value),
@@ -112,7 +114,6 @@ const buildPaginationItems = (currentPage: number, lastPage: number, gap: number
       enabledAnchorHref,
     })));
   }
-
   items.push(...[{ value: '>', disabled: currentPage === lastPage, targetPage: currentPage === lastPage ? currentPage : currentPage + 1, type: 'right', enabledAnchorHref }, { value: '>>', disabled: currentPage === lastPage, targetPage: lastPage, type: 'doubleRight', enabledAnchorHref }] as PaginationItemType[]);
 
   return items;
