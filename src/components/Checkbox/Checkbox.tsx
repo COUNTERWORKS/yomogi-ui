@@ -29,11 +29,15 @@ const Container = styled.div`
 `;
 
 const Label = styled.label<{ theme: Theme }>`
-  min-height: 17px;
   position: relative;
   display: inline-block;
+  width: 100%;
+  min-height: 17px;
   margin: 0;
   padding-left: 25px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
   &:hover {
     cursor: pointer;
   }
