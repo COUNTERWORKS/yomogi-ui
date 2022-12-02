@@ -77,6 +77,7 @@ const Input = styled.input<{ theme: Theme }>`
       border-right: ${({ theme }) => `2px solid ${theme.colors.white}`};
       border-bottom:  ${({ theme }) => `2px solid ${theme.colors.white}`};
       content: '';
+      box-sizing: content-box;
       display: block;
       height: 7px;
       left: 5px;
