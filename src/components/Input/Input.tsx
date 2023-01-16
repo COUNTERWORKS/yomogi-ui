@@ -11,20 +11,12 @@ type Props = {
 export const Input = forwardRef<HTMLInputElement, Props>(({ isError = false, className = '', ...props }, ref) => {
   const theme = useTheme();
 
-  return (
-    <StyledInput
-      {...props}
-      ref={ref}
-      isError={isError}
-      theme={theme}
-      className={className}
-    />
-  );
+  return <StyledInput {...props} ref={ref} isError={isError} theme={theme} className={className} />;
 });
 
 Input.displayName = 'Input';
 
-const StyledInput = styled.input<{ theme: Theme, isError: boolean }>`
+const StyledInput = styled.input<{ theme: Theme; isError: boolean }>`
   position: relative;
   display: block;
   background: ${({ theme }) => theme.colors.white};
@@ -36,10 +28,10 @@ const StyledInput = styled.input<{ theme: Theme, isError: boolean }>`
   min-height: 39px;
   font-size: 14px;
   &:disabled {
-    background: ${({ theme }) => theme.colors.gray[100]}
-  };
+    background: ${({ theme }) => theme.colors.gray[100]};
+  }
   &:focus {
     outline: none;
-    border-color:  ${({ theme, isError }) => !isError && theme.colors.secondary.main}
+    border-color: ${({ theme, isError }) => !isError && theme.colors.secondary.main};
   }
 `;
