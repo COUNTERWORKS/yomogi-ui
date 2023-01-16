@@ -85,7 +85,7 @@ const Container = styled.div<Props & { theme: Theme }>`
             position: absolute;
             top: 0;
             right: 0;
-            width: 44px;
+            width: 22px;
             height: 44px;
             content: '';
             background: #f1f7fb;
@@ -105,7 +105,7 @@ const Container = styled.div<Props & { theme: Theme }>`
             position: absolute;
             top: 0;
             left: 0;
-            width: 44px;
+            width: 22px;
             height: 44px;
             content: '';
             background: #f1f7fb;
@@ -117,7 +117,20 @@ const Container = styled.div<Props & { theme: Theme }>`
         `;
       case 'middle':
         return css`
+          position: relative;
           background: #f1f7fb;
+          &:hover {
+            &:before {
+              position: absolute;
+              top: -1px;
+              left: -1px;
+              width: 44px;
+              height: 44px;
+              content: '';
+              background: #f1f7fb;
+              z-index: -1;
+            }
+          }
         `;
       case 'single':
         return css`
