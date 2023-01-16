@@ -309,12 +309,12 @@ const DateRangePickerContainer = styled.div<{ numberOfMonths: number; noMargin: 
   bottom: 0px;
   box-sizing: border-box;
   padding: 24px;
+  border-radius: 12px;
   margin-top: ${({ noMargin }) => (noMargin ? 0 : 8)}px;
   ${({ noBorder }) =>
     !noBorder &&
     css`
       border-radius: 12px;
-      background: #ffffff;
       border: 1px solid #dddddd;
       box-shadow: 0px 2px 12px rgba(0, 0, 0, 0.1);
     `}
