@@ -15,3 +15,4 @@ export * from './Select';
 export * from './Textarea';
 export * from './ThemeProvider';
 export * from './Typography';
+export * from './DateRangePicker';
