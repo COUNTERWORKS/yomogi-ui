@@ -38,8 +38,11 @@ type DateRangePickerProps = {
   numberOfMonths?: number;
   noMargin?: boolean;
   noBorder?: boolean;
+  noPadding?: boolean;
   opened?: boolean;
   absolute?: boolean;
+  minDate?: string;
+  maxDate?: string;
 };
 
 export const DateRangePicker = memo<DateRangePickerProps>(
@@ -51,9 +54,12 @@ export const DateRangePicker = memo<DateRangePickerProps>(
     onError,
     renderInput,
     onClickAway,
+    minDate,
+    maxDate,
     disabled = false,
     numberOfMonths = 1,
     noMargin = false,
+    noPadding = false,
     noBorder = false,
     opened = false,
     absolute = true,
@@ -235,6 +241,7 @@ export const DateRangePicker = memo<DateRangePickerProps>(
               noMargin={noMargin}
               ref={clickAwayRef}
               noBorder={noBorder}
+              noPadding={noPadding}
             >
               <PickerInner>
                 {[
@@ -248,6 +255,8 @@ export const DateRangePicker = memo<DateRangePickerProps>(
                         cursorDate={currentDate}
                         prevMonth={prevMonth}
                         nextMonth={nextMonth}
+                        minDate={minDate}
+                        maxDate={maxDate}
                         addMonthCount={index}
                         onClick={handleClick}
                         unavailableDates={unavailableDates}
@@ -267,6 +276,7 @@ export const DateRangePicker = memo<DateRangePickerProps>(
             noMargin={noMargin}
             ref={clickAwayRef}
             noBorder={noBorder}
+            noPadding={noPadding}
           >
             <PickerInner>
               {[
@@ -280,6 +290,8 @@ export const DateRangePicker = memo<DateRangePickerProps>(
                       cursorDate={currentDate}
                       prevMonth={prevMonth}
                       nextMonth={nextMonth}
+                      minDate={minDate}
+                      maxDate={maxDate}
                       addMonthCount={index}
                       onClick={handleClick}
                       unavailableDates={unavailableDates}
@@ -304,11 +316,16 @@ const Container = styled.div`
   width: auto;
 `;
 
-const DateRangePickerContainer = styled.div<{ numberOfMonths: number; noMargin: boolean; noBorder: boolean }>`
+const DateRangePickerContainer = styled.div<{
+  numberOfMonths: number;
+  noMargin: boolean;
+  noBorder: boolean;
+  noPadding: boolean;
+}>`
   width: ${({ numberOfMonths }) => 356 * numberOfMonths}px;
   bottom: 0px;
   box-sizing: border-box;
-  padding: 24px;
+  padding: ${({ noPadding }) => (noPadding ? 0 : 24)}px;
   border-radius: 12px;
   margin-top: ${({ noMargin }) => (noMargin ? 0 : 8)}px;
   ${({ noBorder }) =>
