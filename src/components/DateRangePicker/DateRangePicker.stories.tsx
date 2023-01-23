@@ -43,6 +43,20 @@ const Template: Story = () => {
         </FormBlock>
         <FormBlock>
           <Typography as="p" size="small">
+            minDate(2023-01-10)設定
+          </Typography>
+          <DateRangePicker
+            minDate="2023/01/10"
+            renderInput={({ startProps, endProps }) => (
+              <Flex gap={4}>
+                <Input {...startProps} />
+                <Input {...endProps} />
+              </Flex>
+            )}
+          />
+        </FormBlock>
+        <FormBlock>
+          <Typography as="p" size="small">
             初期値あり
           </Typography>
           <DateRangePicker

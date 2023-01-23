@@ -88,10 +88,10 @@ export const isUnavailable = (
   minDate?: string,
   maxDate?: string
 ): boolean => {
-  if (minDate && isValidDateFormat(minDate) && isAfter(toDate(minDate), date)) {
+  if (minDate && isValidDateFormat(minDate) && (isAfter(toDate(minDate), date) || isSameDay(toDate(minDate), date))) {
     return true;
   }
-  if (maxDate && isValidDateFormat(maxDate) && isBefore(toDate(maxDate), date)) {
+  if (maxDate && isValidDateFormat(maxDate) && (isBefore(toDate(maxDate), date) || isSameDay(toDate(maxDate), date))) {
     return true;
   }
 
