@@ -6,12 +6,16 @@ import styled from '@emotion/styled';
 export const Hint: FC<ComponentPropsWithRef<'p'>> = ({ children, ...props }) => {
   const theme = useTheme();
 
-  return <StyledHint theme={theme} {...props}>{children}</StyledHint>;
+  return (
+    <StyledHint theme={theme} {...props}>
+      {children}
+    </StyledHint>
+  );
 };
 
-const StyledHint = styled.p<{theme: Theme }>`
+const StyledHint = styled.p<{ theme: Theme }>`
   display: block;
   font-size: 14px;
-  color: ${({ theme }) => theme.colors.gray[400]};
+  color: ${({ theme }) => theme.colors.gray[600]};
   margin: 4px 0;
 `;
