@@ -85,8 +85,8 @@ const Container = styled.div<Props & { theme: Theme }>`
             position: absolute;
             top: 0;
             right: 0;
-            width: 22px;
-            height: 44px;
+            width: 20px;
+            height: 40px;
             content: '';
             background: #f1f7fb;
             z-index: -1;
@@ -105,8 +105,8 @@ const Container = styled.div<Props & { theme: Theme }>`
             position: absolute;
             top: 0;
             left: 0;
-            width: 22px;
-            height: 44px;
+            width: 20px;
+            height: 40px;
             content: '';
             background: #f1f7fb;
             z-index: -1;
@@ -124,8 +124,8 @@ const Container = styled.div<Props & { theme: Theme }>`
               position: absolute;
               top: -1px;
               left: -1px;
-              width: 44px;
-              height: 44px;
+              width: 40px;
+              height: 40px;
               content: '';
               background: #f1f7fb;
               z-index: -1;

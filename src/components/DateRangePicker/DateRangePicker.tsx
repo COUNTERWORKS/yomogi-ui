@@ -322,7 +322,7 @@ const DateRangePickerContainer = styled.div<{
   noBorder: boolean;
   noPadding: boolean;
 }>`
-  width: ${({ numberOfMonths }) => 356 * numberOfMonths}px;
+  width: ${({ numberOfMonths }) => 328 * numberOfMonths}px;
   bottom: 0px;
   box-sizing: border-box;
   padding: ${({ noPadding }) => (noPadding ? 0 : 24)}px;
@@ -339,7 +339,7 @@ const DateRangePickerContainer = styled.div<{
 
 const InputContainer = styled.div<{ numberOfMonths: number }>`
   position: 'relative';
-  max-width: ${({ numberOfMonths }) => 356 * numberOfMonths}px;
+  max-width: ${({ numberOfMonths }) => 328 * numberOfMonths}px;
 `;
 
 const PickerInner = styled.div`
@@ -347,6 +347,6 @@ const PickerInner = styled.div`
   gap: 40px;
 `;
 
-const Error = styled.div<{ theme: Theme }>`
+const Error = styled.p<{ theme: Theme }>`
   color: ${({ theme }) => theme.colors.danger.main};
 `;
