@@ -19,9 +19,9 @@ export const Arrow = memo(({ type, onClick, disabled = false, hidden = false }: 
 Arrow.displayName = 'Arrow';
 
 const Container = styled.div<{ disabled: boolean }>`
-  width: 44px;
-  height: 44px;
-  line-height: 44px;
+  width: 40px;
+  height: 40px;
+  line-height: 40px;
   border-radius: 100px;
   user-select: none;
   font-size: 18px;

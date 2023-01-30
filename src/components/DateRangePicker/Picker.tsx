@@ -124,15 +124,15 @@ const Year = styled.div`
 
 const Week = styled.div`
   display: grid;
-  grid-template-columns: repeat(7, 44px);
-  grid-auto-rows: 44px;
+  grid-template-columns: repeat(7, 40px);
+  grid-auto-rows: 40px;
   padding: 8px 0 0 0;
   color: #8e8e8e;
 `;
 
 const Contents = styled.div`
   display: grid;
-  grid-template-columns: repeat(7, 44px);
-  grid-auto-rows: 44px;
+  grid-template-columns: repeat(7, 40px);
+  grid-auto-rows: 40px;
   margin-bottom: 24px;
 `;
