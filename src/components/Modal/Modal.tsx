@@ -4,7 +4,7 @@ import { useTheme } from '../../hooks';
 import { Theme } from '../../themes';
 import { keyframes } from '@emotion/react';
 
-type Size = 'small' | 'medium' |'large' | 'full';
+type Size = 'small' | 'medium' | 'large' | 'full';
 
 type Props = {
   isOpen: boolean;
@@ -12,26 +12,24 @@ type Props = {
   size: Size;
   children: React.ReactNode;
   className?: string;
-}
-
-const modalSize = {
-  'small': '320px',
-  'medium': '640px',
-  'large': '960px',
-  'full': '100vw',
 };
 
+const modalSize = {
+  small: '320px',
+  medium: '640px',
+  large: '960px',
+  full: '100vw',
+};
 
 export const Modal: React.FC<Props> = ({ isOpen, size = 'medium', onClose, children, className = '' }) => {
   const theme = useTheme();
 
   return (
-    <Container isOpen={isOpen} className={className} >
-
+    <Container isOpen={isOpen} className={className}>
       <Content theme={theme} size={size}>
         {children}
       </Content>
-      <Overay isOpen={isOpen} onClick={onClose}/>
+      <Overay isOpen={isOpen} onClick={onClose} />
     </Container>
   );
 };
@@ -51,8 +49,7 @@ const animation = keyframes`
   }
 `;
 
-
-const Overay = styled.div<{ isOpen: Boolean; }>`
+const Overay = styled.div<{ isOpen: boolean }>`
   background: rgba(0, 0, 0, 0.4);
   position: fixed;
   width: 100%;
@@ -63,8 +60,8 @@ const Overay = styled.div<{ isOpen: Boolean; }>`
   z-index: 10;
 `;
 
-const Container = styled.div<{ isOpen: Boolean; }>`
-  display: ${({ isOpen }) => isOpen ? 'block' : 'none' };
+const Container = styled.div<{ isOpen: boolean }>`
+  display: ${({ isOpen }) => (isOpen ? 'block' : 'none')};
   position: fixed;
   width: 100%;
   height: 100%;
@@ -78,14 +75,16 @@ const Container = styled.div<{ isOpen: Boolean; }>`
 const Content = styled.div<{ theme: Theme; size: Size }>`
   position: relative;
   background: ${({ theme }) => theme.colors.white};
-  max-width: ${({ size }) => modalSize[size] };
+  max-width: ${({ size }) => modalSize[size]};
   margin: 64px auto;
   border-radius: 3px;
   box-shadow: 0 1px 8px rgba(0, 0, 0, 0.4);
-  overflow: scroll;
+  overflow-y: scroll;
   z-index: 20;
   max-height: 80vh;
-  ${({ size }) => size === 'full' && `
+  ${({ size }) =>
+    size === 'full' &&
+    `
     max-height: 100vh;
     margin: 0;
     border-radius: 0;
