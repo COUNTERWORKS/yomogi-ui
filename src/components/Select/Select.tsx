@@ -1,34 +1,44 @@
-import { ComponentPropsWithRef, ReactNode, forwardRef } from 'react';
+import { ComponentPropsWithRef, ReactNode, forwardRef, useRef } from 'react';
 import { useTheme } from '../../hooks';
 import styled from '@emotion/styled';
 import { Theme } from '../../themes';
+
+type Unit = 'hour' | 'minute';
 
 type Props = {
   isError?: boolean;
   children: ReactNode;
   className?: string;
-} & ComponentPropsWithRef<'select'>
+  unit?: Unit;
+} & ComponentPropsWithRef<'select'>;
 
-export const Select = forwardRef<HTMLSelectElement, Props >(({ isError = false, children, className, ...props }, ref) => {
-  const theme = useTheme();
+const getUnit = (unit: Unit): string => {
+  switch (unit) {
+    case 'hour':
+      return '時';
+    case 'minute':
+      return '分';
+  }
+};
 
-  return (
-    <Container theme={theme} className={className}>
-      <StyledSelect
-        {...props}
-        ref={ref}
-        isError={isError}
-        theme={theme}
-      >
-        {children}
-      </StyledSelect>
-    </Container>
-  );
-});
+export const Select = forwardRef<HTMLSelectElement, Props>(
+  ({ isError = false, children, className, unit, ...props }, ref) => {
+    const theme = useTheme();
+
+    return (
+      <Container theme={theme} className={className}>
+        <StyledSelect {...props} ref={ref} isError={isError} theme={theme}>
+          {children}
+        </StyledSelect>
+        {unit && <Right>{getUnit(unit)}</Right>}
+      </Container>
+    );
+  }
+);
 
 Select.displayName = 'Select';
 
-const StyledSelect = styled.select<{ theme: Theme, isError: boolean }>`
+const StyledSelect = styled.select<{ theme: Theme; isError: boolean }>`
   max-height: 39px;
   padding-right: 32px;
   position: relative;
@@ -43,19 +53,20 @@ const StyledSelect = styled.select<{ theme: Theme, isError: boolean }>`
   font-size: 14px;
   color: ${({ theme }) => theme.colors.text};
   appearance: none;
+  pointer-events: auto;
   &:disabled {
-    background: ${({ theme }) => theme.colors.gray[100]}
-  };
+    background: ${({ theme }) => theme.colors.gray[100]};
+  }
   &:focus {
     outline: none;
-    border-color: ${({ theme, isError }) => !isError && theme.colors.secondary.main}
+    border-color: ${({ theme, isError }) => !isError && theme.colors.secondary.main};
   }
 `;
 
 const Container = styled.div<{ theme: Theme }>`
   position: relative;
   &:after {
-    content: "";
+    content: '';
     position: absolute;
     right: 16px;
     top: 17px;
@@ -64,10 +75,21 @@ const Container = styled.div<{ theme: Theme }>`
     border-top: ${({ theme }) => `1px solid ${theme.colors.text}`};
     border-left: ${({ theme }) => `1px solid ${theme.colors.text}`};
     transform: translateY(-50%) rotate(-135deg);
-    font-size: 14px;
     pointer-events: none;
+    font-size: 14px;
     font-weight: 400;
   }
 `;
 
-
+const Right = styled.span`
+  height: 22px;
+  text-align: center;
+  line-height: 22px;
+  position: absolute;
+  right: 32px;
+  top: 0;
+  cursor: pointer;
+  font-size: 14px;
+  padding: 8px 12px;
+  pointer-events: none;
+`;

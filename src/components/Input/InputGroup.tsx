@@ -1,7 +1,7 @@
 import { memo, ReactNode, ComponentPropsWithRef } from 'react';
 import styled from '@emotion/styled';
 
-type Unit = 'yen' | 'square-meter' | 'tsubo';
+type Unit = 'yen' | 'square-meter' | 'tsubo' | 'day';
 
 type Props = {
   unit?: Unit;
@@ -17,6 +17,8 @@ const getUnit = (unit: Unit): string => {
       return '㎡';
     case 'tsubo':
       return '坪';
+    case 'day':
+      return '日';
     default:
       return '';
   }
