@@ -1,4 +1,4 @@
-import { ComponentPropsWithRef, ReactNode, forwardRef, useRef } from 'react';
+import { ComponentPropsWithRef, ReactNode, forwardRef } from 'react';
 import { useTheme } from '../../hooks';
 import styled from '@emotion/styled';
 import { Theme } from '../../themes';
