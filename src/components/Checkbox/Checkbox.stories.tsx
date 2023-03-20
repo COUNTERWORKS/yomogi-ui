@@ -31,6 +31,15 @@ const Template: Story = () => {
           </Flex>
         </FormBlock>
       </div>
+      <div style={{ marginBottom: '24px' }}>
+        <Typography as="p" size="small">disabled</Typography>
+        <FormBlock label='好きな食べ物'>
+          <Flex>
+            <Checkbox id="apple-disabled" name="food-disabled" label="りんご" value="apple" disabled/>
+            <Checkbox id="orange-disabled" label="オレンジ" name="food-disabled" value="orange" disabled/>
+          </Flex>
+        </FormBlock>
+      </div>
     </>
   );
 };
