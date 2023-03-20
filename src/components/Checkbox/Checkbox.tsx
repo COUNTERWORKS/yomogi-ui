@@ -7,16 +7,24 @@ type Props = {
   id: string;
   label: string;
   className?: string;
+  disabled?: boolean;
 } & ComponentPropsWithRef<'input'>
 
-export const Checkbox = forwardRef<HTMLInputElement, Props>(({ id, label, className = '', ...props }, ref) => {
+export const Checkbox = forwardRef<HTMLInputElement, Props>(({ id, label, className = '', disabled = false,  ...props }, ref) => {
   const theme = useTheme();
   return (
     <Container className={className}>
-      <Input {...props} id={id} ref={ref} type="checkbox" theme={theme}/>
-      <Label htmlFor={id} theme={theme}>
-        {label}
-      </Label>
+      <Input {...props} id={id} ref={ref} type="checkbox" theme={theme} disabled={disabled}/>
+      { disabled ? (
+        <DisabledLabel htmlFor={id} theme={theme}>
+          {label}
+        </DisabledLabel>
+      ) : (
+        <Label htmlFor={id} theme={theme}>
+          {label}
+        </Label>
+      ) }
+
     </Container>
   );
 });
@@ -29,6 +37,36 @@ const Container = styled.div`
 `;
 
 const Label = styled.label<{ theme: Theme }>`
+  position: relative;
+  display: inline-block;
+  width: 100%;
+  min-height: 17px;
+  margin: 0;
+  padding-left: 25px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  &:hover {
+    cursor: pointer;
+  }
+  &:before {
+    position: absolute;
+    top: 2px;
+    left: 0;
+    width: 17px;
+    height: 17px;
+    border: ${({ theme }) => `solid 2px ${theme.colors.border}`};
+    background-color: ${({ theme }) => theme.colors.white};
+    content: '';
+    border-radius: 3px;
+    box-sizing: border-box;
+    transition: .2s ease-in-out;
+    transition-property: background-color, color, border-color, opacity;
+  }
+`;
+
+const DisabledLabel = styled.label<{ theme: Theme }>`
+  color: ${({ theme }) => theme.colors.gray[500]};
   position: relative;
   display: inline-block;
   width: 100%;
@@ -86,6 +124,12 @@ const Input = styled.input<{ theme: Theme }>`
       top: 50%;
       transform: rotate(45deg);
       width: 5px;
+    }
+  }
+  &:disabled + label {
+    &:before {
+      background: ${({ theme }) => theme.colors.gray[100]};
+      border-color: ${({ theme }) => theme.colors.gray[100]};
     }
   }
 `;
