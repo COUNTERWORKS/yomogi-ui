@@ -134,5 +134,4 @@ const Contents = styled.div`
   display: grid;
   grid-template-columns: repeat(7, 40px);
   grid-auto-rows: 40px;
-  margin-bottom: 24px;
 `;
