@@ -65,5 +65,8 @@
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook",
     "prepublishOnly": "npm run clean && npm run build"
+  },
+  "volta": {
+    "node": "16.20.0"
   }
 }

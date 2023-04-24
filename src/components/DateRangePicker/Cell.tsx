@@ -58,7 +58,7 @@ const Container = styled.div<Props & { theme: Theme }>`
     css`
       cursor: pointer;
       &:hover {
-        border-radius: 100px;
+        border-radius: 4px;
         border: solid 1px ${theme.colors.secondary.main};
         box-sizing: border-box;
       }
@@ -70,7 +70,7 @@ const Container = styled.div<Props & { theme: Theme }>`
       text-decoration: line-through;
       color: ${theme.colors.gray[500]};
     `}
-  
+
   ${({ value, type, theme }: Props & { theme: Theme }) => {
     if (!value) return css``;
 
@@ -78,7 +78,8 @@ const Container = styled.div<Props & { theme: Theme }>`
       case 'start':
         return css`
           position: relative;
-          border-radius: 100px;
+          border-top-left-radius: 4px;
+          border-bottom-left-radius: 4px;
           background: ${theme.colors.secondary.main};
           color: ${theme.colors.white};
           &&:before {
@@ -98,7 +99,8 @@ const Container = styled.div<Props & { theme: Theme }>`
       case 'end':
         return css`
           position: relative;
-          border-radius: 100px;
+          border-top-right-radius: 4px;
+          border-bottom-right-radius: 4px;
           background: ${theme.colors.secondary.main};
           color: ${theme.colors.white};
           &:before {
@@ -134,7 +136,7 @@ const Container = styled.div<Props & { theme: Theme }>`
         `;
       case 'single':
         return css`
-          border-radius: 100px;
+          border-radius: 4px;
           background: ${theme.colors.secondary.main};
           color: ${theme.colors.white};
         `;
