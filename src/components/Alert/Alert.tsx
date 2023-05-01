@@ -12,22 +12,33 @@ type AlertProps = {
   onClickCloseButton?: () => void;
   /** closeボタンを表示 */
   showCloseButton?: boolean;
-}
+};
 
-export const Alert: FC<ComponentPropsWithRef<'div'> & AlertProps> = ({ color, children, onClickCloseButton, showCloseButton, ...props }) => {
+export const Alert: FC<ComponentPropsWithRef<'div'> & AlertProps> = ({
+  color,
+  children,
+  onClickCloseButton,
+  showCloseButton,
+  ...props
+}) => {
   const theme = useTheme();
 
   return (
     <StyledAlert color={color} theme={theme} {...props}>
       {children}
-      {showCloseButton && <CloseButton onClick={onClickCloseButton}><IoMdClose size={21} /></CloseButton>}
+      {showCloseButton && (
+        <CloseButton onClick={onClickCloseButton}>
+          <IoMdClose size={21} />
+        </CloseButton>
+      )}
     </StyledAlert>
   );
 };
 
-const StyledAlert = styled.div<{ theme: Theme, color: AlertColor }>`
-  position: relative;
-  display: block;
+const StyledAlert = styled.div<{ theme: Theme; color: AlertColor }>`
+  display: flex;
+  justify-content: space-between;
+  column-gap: 8px;
   padding: 12px 16px;
   margin: 16px 0;
   border-radius: 3px;
@@ -61,13 +72,9 @@ const StyledAlert = styled.div<{ theme: Theme, color: AlertColor }>`
 `;
 
 const CloseButton = styled.div`
-  position: absolute;
-  line-height: 1;
-  top: 12px;
-  right: 16px;
+  height: 21px;
   &:hover {
     cursor: pointer;
     opacity: 0.8;
   }
 `;
-
