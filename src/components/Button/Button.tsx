@@ -42,6 +42,7 @@ const StyledButton = styled.button<{theme: Theme, color: ButtonColor, size: Butt
   color: ${({ theme, color }) => theme.colors[color].text};
   background-color: ${({ theme, color }) => theme.colors[color].main};
   width: ${({ size }) => buttonWidth[size]};
+  font-size: 14px;
 
   &:hover {
     background-color: ${({ theme, color }) => color === 'light' ? theme.colors.gray[100] : theme.colors.hover(theme.colors[color].main)};
