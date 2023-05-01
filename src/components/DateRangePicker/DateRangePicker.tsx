@@ -266,7 +266,9 @@ export const DateRangePicker = memo<DateRangePickerProps>(
                     )),
                 ]}
               </PickerInner>
-              {isInvalid && <Error theme={theme}>選択した期間は他の申込・利用不可日が設定されています。</Error>}
+              {isInvalid && (
+                <Error theme={theme}>問い合わせできない日が含まれています。期間を選び直してください。</Error>
+              )}
             </DateRangePickerContainer>
           )}
         </InputContainer>
@@ -301,7 +303,7 @@ export const DateRangePicker = memo<DateRangePickerProps>(
                   )),
               ]}
             </PickerInner>
-            {isInvalid && <Error theme={theme}>選択した期間は他の申込・利用不可日が設定されています。</Error>}
+            {isInvalid && <Error theme={theme}>問い合わせできない日が含まれています。期間を選び直してください。</Error>}
           </DateRangePickerContainer>
         )}
       </Container>
