@@ -12,6 +12,8 @@ type Props = {
   size: Size;
   children: React.ReactNode;
   className?: string;
+  style?: React.CSSProperties;
+  contentStyle?: React.CSSProperties;
 };
 
 const modalSize = {
@@ -21,12 +23,20 @@ const modalSize = {
   full: '100vw',
 };
 
-export const Modal: React.FC<Props> = ({ isOpen, size = 'medium', onClose, children, className = '' }) => {
+export const Modal: React.FC<Props> = ({
+  isOpen,
+  size = 'medium',
+  onClose,
+  children,
+  className = '',
+  style,
+  contentStyle,
+}) => {
   const theme = useTheme();
 
   return (
-    <Container isOpen={isOpen} className={className}>
-      <Content theme={theme} size={size}>
+    <Container isOpen={isOpen} className={className} style={style}>
+      <Content theme={theme} size={size} style={contentStyle}>
         {children}
       </Content>
       <Overay isOpen={isOpen} onClick={onClose} />
@@ -81,11 +91,11 @@ const Content = styled.div<{ theme: Theme; size: Size }>`
   box-shadow: 0 1px 8px rgba(0, 0, 0, 0.4);
   overflow-y: scroll;
   z-index: 20;
-  max-height: 80vh;
+  max-height: 80dvh;
   ${({ size }) =>
     size === 'full' &&
     `
-    max-height: 100vh;
+    max-height: 100dvh;
     margin: 0;
     border-radius: 0;
   `}

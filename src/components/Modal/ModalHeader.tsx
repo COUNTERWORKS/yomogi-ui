@@ -9,13 +9,17 @@ type Props = {
   children: React.ReactChild;
   onClose: () => void;
   className?: string;
-}
+  style?: React.CSSProperties;
+};
 
-export const ModalHeader: React.FC<Props> = ({ children, onClose, className = '', sticky = true }) => {
+export const ModalHeader: React.FC<Props> = ({ children, onClose, className = '', sticky = true, style }) => {
   const theme = useTheme();
 
   return (
-    <Container theme={theme} className={className} sticky={sticky}>{children}<StyledIcon theme={theme} onClick={onClose} /></Container>
+    <Container theme={theme} className={className} sticky={sticky} style={style}>
+      {children}
+      <StyledIcon theme={theme} onClick={onClose} />
+    </Container>
   );
 };
 
@@ -25,7 +29,7 @@ const Container = styled.div<{ theme: Theme; sticky: boolean }>`
   align-items: center;
   font-size: 18px;
   font-weight: bold;
-  position: ${({ sticky }) => sticky ? 'sticky' : 'relative' };
+  position: ${({ sticky }) => (sticky ? 'sticky' : 'relative')};
   padding: 16px 24px;
   border-bottom: ${({ theme }) => `solid 1px ${theme.colors.border}`};
   background: ${({ theme }) => theme.colors.white};
