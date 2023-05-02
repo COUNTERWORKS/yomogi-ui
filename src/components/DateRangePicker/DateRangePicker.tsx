@@ -126,12 +126,14 @@ export const DateRangePicker = memo<DateRangePickerProps>(
           setStartDate(formatDate(selectedDate));
           setEndDate('');
           setCursor('end');
+          return;
         } else {
           if (startDate && minPeriod && differenceInCalendarDays(selectedDate, toDate(startDate)) < minPeriod) {
             return;
           }
           setEndDate(formatDate(selectedDate));
           validateRange(isDisabled({ unavailableDates, startDate, endDate: formatDate(selectedDate) }));
+          setCursor(undefined);
         }
       },
       [startDate, endDate, minPeriod, unavailableDates, cursor, validateRange]
