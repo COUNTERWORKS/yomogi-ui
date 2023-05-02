@@ -24,6 +24,7 @@ type RenderInputProps = {
   isError: boolean;
   ref: RefObject<HTMLInputElement>;
   value: string;
+  readonly: boolean;
 };
 
 type DateRangePickerProps = {
@@ -81,7 +82,6 @@ export const DateRangePicker = memo<DateRangePickerProps>(
       (event: MouseEvent): void => {
         event.preventDefault();
         setCurrentDate((date) => subMonths(date, numberOfMonths));
-        cursor === 'end' ? endDateRef.current?.focus() : startDateRef.current?.focus();
       },
       [numberOfMonths, cursor]
     );
@@ -90,7 +90,6 @@ export const DateRangePicker = memo<DateRangePickerProps>(
       (event: MouseEvent): void => {
         event.preventDefault();
         setCurrentDate((date) => addMonths(date, numberOfMonths));
-        cursor === 'end' ? endDateRef.current?.focus() : startDateRef.current?.focus();
       },
       [numberOfMonths]
     );
@@ -123,20 +122,16 @@ export const DateRangePicker = memo<DateRangePickerProps>(
             validateRange(isDisabled({ unavailableDates, startDate: formatDate(selectedDate), endDate }));
           }
           setCursor('end');
-          endDateRef.current?.focus();
         } else if (startDate && isBefore(selectedDate, toDate(startDate))) {
           setStartDate(formatDate(selectedDate));
           setEndDate('');
           setCursor('end');
-          endDateRef.current?.focus();
         } else {
           if (startDate && minPeriod && differenceInCalendarDays(selectedDate, toDate(startDate)) < minPeriod) {
             return;
           }
           setEndDate(formatDate(selectedDate));
           validateRange(isDisabled({ unavailableDates, startDate, endDate: formatDate(selectedDate) }));
-          setCursor('end');
-          endDateRef.current?.focus();
         }
       },
       [startDate, endDate, minPeriod, unavailableDates, cursor, validateRange]
@@ -226,6 +221,7 @@ export const DateRangePicker = memo<DateRangePickerProps>(
               ref: startDateRef,
               onClick: handleStartDateClick,
               value: startDate,
+              readonly: true,
             },
             endProps: {
               onChange: handleEndDateChange,
@@ -233,6 +229,7 @@ export const DateRangePicker = memo<DateRangePickerProps>(
               isError: isEndDateError,
               ref: endDateRef,
               value: endDate,
+              readonly: true,
             },
           })}
           {absolute && (opened || (on && !disabled)) && (
