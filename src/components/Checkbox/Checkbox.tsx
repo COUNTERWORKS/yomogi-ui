@@ -8,26 +8,27 @@ type Props = {
   label: string;
   className?: string;
   disabled?: boolean;
-} & ComponentPropsWithRef<'input'>
+} & ComponentPropsWithRef<'input'>;
 
-export const Checkbox = forwardRef<HTMLInputElement, Props>(({ id, label, className = '', disabled = false,  ...props }, ref) => {
-  const theme = useTheme();
-  return (
-    <Container className={className}>
-      <Input {...props} id={id} ref={ref} type="checkbox" theme={theme} disabled={disabled}/>
-      { disabled ? (
-        <DisabledLabel htmlFor={id} theme={theme}>
-          {label}
-        </DisabledLabel>
-      ) : (
-        <Label htmlFor={id} theme={theme}>
-          {label}
-        </Label>
-      ) }
-
-    </Container>
-  );
-});
+export const Checkbox = forwardRef<HTMLInputElement, Props>(
+  ({ id, label, className = '', disabled = false, ...props }, ref) => {
+    const theme = useTheme();
+    return (
+      <Container className={className}>
+        <Input {...props} id={id} ref={ref} type="checkbox" theme={theme} disabled={disabled} />
+        {disabled ? (
+          <DisabledLabel htmlFor={id} theme={theme}>
+            {label}
+          </DisabledLabel>
+        ) : (
+          <Label htmlFor={id} theme={theme}>
+            {label}
+          </Label>
+        )}
+      </Container>
+    );
+  }
+);
 
 Checkbox.displayName = 'Checkbox';
 
@@ -103,7 +104,6 @@ const Input = styled.input<{ theme: Theme }>`
   position: absolute;
   height: 1px;
   width: 1px;
-  overflow: hidden;
   white-space: nowrap;
   &:checked + label {
     &:before {
@@ -113,17 +113,16 @@ const Input = styled.input<{ theme: Theme }>`
     }
     &:after {
       border-right: ${({ theme }) => `2px solid ${theme.colors.white}`};
-      border-bottom:  ${({ theme }) => `2px solid ${theme.colors.white}`};
+      border-bottom: ${({ theme }) => `2px solid ${theme.colors.white}`};
       content: '';
       box-sizing: content-box;
       display: block;
-      height: 7px;
-      left: 5px;
-      margin-top: -6px;
+      height: 8px;
+      top: 4px;
+      left: 5.5px;
       position: absolute;
-      top: 50%;
       transform: rotate(45deg);
-      width: 5px;
+      width: 4px;
     }
   }
   &:disabled + label {
@@ -133,5 +132,3 @@ const Input = styled.input<{ theme: Theme }>`
     }
   }
 `;
-
-
