@@ -75,6 +75,8 @@ export const PaginationItem: FC<Props> = ({
 PaginationItem.displayName = 'PaginationItem';
 
 const Cell = styled.li<{ theme: Theme; disabled: boolean; enabledAnchor: boolean }>`
+  display: flex;
+  align-items: center;
   font-size: 14px;
   position: relative;
   padding: ${({ enabledAnchor }) => (enabledAnchor ? '0px' : '12px 16px')};
@@ -86,6 +88,9 @@ const Cell = styled.li<{ theme: Theme; disabled: boolean; enabledAnchor: boolean
   border: ${({ theme }) => `1px solid ${theme.colors.border}`};
   color: ${({ theme, disabled }) => (disabled ? theme.colors.text : theme.colors.primary.main)};
   cursor: ${({ disabled }) => (disabled ? 'default' : 'pointer')};
+  & svg {
+    font-size: 12px;
+  }
   &:first-child {
     border-top-left-radius: 4px;
     border-bottom-left-radius: 4px;
@@ -111,8 +116,11 @@ const Cell = styled.li<{ theme: Theme; disabled: boolean; enabledAnchor: boolean
 const CellLink = styled.a`
   color: inherit;
   display: flex;
-  padding: 12px 16px;
+  padding: 0 16px;
   transition: none;
+  height: 40px;
+  display: flex;
+  align-items: center;
   &:hover {
     text-decoration: none;
     color: inherit;
