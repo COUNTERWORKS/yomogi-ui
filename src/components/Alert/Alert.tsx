@@ -74,6 +74,9 @@ const StyledAlert = styled.div<{ theme: Theme; color: AlertColor }>`
 
 const CloseButton = styled.div`
   height: 21px;
+  font-size: 18px;
+  display: flex;
+  align-items: center;
   &:hover {
     cursor: pointer;
     opacity: 0.8;

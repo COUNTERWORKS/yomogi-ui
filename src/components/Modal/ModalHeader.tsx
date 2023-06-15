@@ -2,8 +2,6 @@ import React from 'react';
 import styled from '@emotion/styled';
 import { useTheme } from '../../hooks';
 import { Theme } from '../../themes';
-import { faXmark } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 type Props = {
   sticky?: boolean;
