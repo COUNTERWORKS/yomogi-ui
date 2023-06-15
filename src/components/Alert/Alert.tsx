@@ -2,7 +2,8 @@ import { FC, ComponentPropsWithRef } from 'react';
 import { Color, Theme } from '../../themes';
 import { useTheme } from '../../hooks';
 import styled from '@emotion/styled';
-import { IoMdClose } from 'react-icons/io';
+import { faXmark } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 type AlertColor = Extract<Color, 'info' | 'success' | 'caution' | 'error'>;
 
@@ -28,7 +29,7 @@ export const Alert: FC<ComponentPropsWithRef<'div'> & AlertProps> = ({
       {children}
       {showCloseButton && (
         <CloseButton onClick={onClickCloseButton}>
-          <IoMdClose size={21} />
+          <FontAwesomeIcon icon={faXmark} />
         </CloseButton>
       )}
     </StyledAlert>

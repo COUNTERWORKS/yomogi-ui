@@ -2,7 +2,8 @@ import React from 'react';
 import styled from '@emotion/styled';
 import { useTheme } from '../../hooks';
 import { Theme } from '../../themes';
-import { MdClose } from 'react-icons/md';
+import { faXmark } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 type Props = {
   sticky?: boolean;
@@ -18,7 +19,9 @@ export const ModalHeader: React.FC<Props> = ({ children, onClose, className = ''
   return (
     <Container theme={theme} className={className} sticky={sticky} style={style}>
       {children}
-      <StyledIcon theme={theme} onClick={onClose} />
+      <StyledIcon theme={theme} onClick={onClose}>
+        <FontAwesomeIcon icon={faXmark} />
+      </StyledIcon>
     </Container>
   );
 };
@@ -37,7 +40,7 @@ const Container = styled.div<{ theme: Theme; sticky: boolean }>`
   z-index: 20;
 `;
 
-const StyledIcon = styled(MdClose)<{ theme: Theme }>`
+const StyledIcon = styled.span<{ theme: Theme }>`
   width: 24px;
   height: 24px;
   color: ${({ theme }) => theme.colors.gray['400']};
