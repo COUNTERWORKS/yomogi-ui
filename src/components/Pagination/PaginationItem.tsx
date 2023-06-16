@@ -4,14 +4,7 @@ import { css } from '@emotion/react';
 import { useTheme } from '../../hooks';
 import { Theme } from '../../themes';
 import { anchorHrefParamsType } from '../Pagination';
-import {
-  faAnglesLeft,
-  faAnglesRight,
-  faChevronLeft,
-  faChevronRight,
-  faEllipsis,
-} from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { AngleLeft, AngleRight, AnglesLeft, AnglesRight, Ellipsis } from '../../components/Icons';
 
 export type CellType = 'value' | 'doubleLeft' | 'left' | 'doubleRight' | 'right' | 'dot';
 
@@ -28,11 +21,11 @@ type Props = {
 const buildChildren = (value: string) => {
   return {
     value: value,
-    doubleLeft: <FontAwesomeIcon icon={faAnglesLeft} />,
-    left: <FontAwesomeIcon icon={faChevronLeft} />,
-    doubleRight: <FontAwesomeIcon icon={faAnglesRight} />,
-    right: <FontAwesomeIcon icon={faChevronRight} />,
-    dot: <FontAwesomeIcon icon={faEllipsis} />,
+    doubleLeft: <AnglesLeft />,
+    left: <AngleLeft />,
+    doubleRight: <AnglesRight />,
+    right: <AngleRight />,
+    dot: <Ellipsis />,
   };
 };
 

@@ -2,7 +2,7 @@ import React from 'react';
 import styled from '@emotion/styled';
 import { useTheme } from '../../hooks';
 import { Theme } from '../../themes';
-import closeImage from '../../public/images/Modal/closeImage.svg';
+import { ModalCloseImage } from '../../components/Icons';
 
 type Props = {
   sticky?: boolean;
@@ -19,7 +19,7 @@ export const ModalHeader: React.FC<Props> = ({ children, onClose, className = ''
     <Container theme={theme} className={className} sticky={sticky} style={style}>
       {children}
       <StyledIcon theme={theme} onClick={onClose}>
-        <img src={closeImage} alt="閉じるボタン" />
+        <ModalCloseImage />
       </StyledIcon>
     </Container>
   );

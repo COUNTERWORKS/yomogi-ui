@@ -1,7 +1,6 @@
 import { memo, MouseEvent } from 'react';
 import styled from '@emotion/styled';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faAngleLeft, faAngleRight } from '@fortawesome/free-solid-svg-icons';
+import { AngleLeft, AngleRight } from '../../components/Icons';
 
 type Props = {
   type: 'right' | 'left';
@@ -12,7 +11,7 @@ type Props = {
 
 export const Arrow = memo(({ type, onClick, disabled = false, hidden = false }: Props) => (
   <Container onClick={(event) => !disabled && onClick(event)} disabled={disabled}>
-    {!hidden && (type === 'right' ? <FontAwesomeIcon icon={faAngleRight} /> : <FontAwesomeIcon icon={faAngleLeft} />)}
+    {!hidden && (type === 'right' ? <AngleRight /> : <AngleLeft />)}
   </Container>
 ));
 
