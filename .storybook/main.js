@@ -10,6 +10,7 @@ module.exports = {
     "@storybook/addon-docs",
     "storybook-addon-react-docgen"
   ],
+  "staticDirs": ["../src/public"],
   "plugins": [
     "@emotion"
   ],
