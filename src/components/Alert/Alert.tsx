@@ -80,4 +80,7 @@ const CloseButton = styled.div`
     cursor: pointer;
     opacity: 0.8;
   }
+  path {
+    fill: currentColor;
+  }
 `;
