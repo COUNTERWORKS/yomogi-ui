@@ -81,9 +81,6 @@ const Cell = styled.li<{ theme: Theme; disabled: boolean; enabledAnchor: boolean
   border: ${({ theme }) => `1px solid ${theme.colors.border}`};
   color: ${({ theme, disabled }) => (disabled ? theme.colors.text : theme.colors.primary.main)};
   cursor: ${({ disabled }) => (disabled ? 'default' : 'pointer')};
-  & svg {
-    font-size: 12px;
-  }
   &:first-child {
     border-top-left-radius: 4px;
     border-bottom-left-radius: 4px;
