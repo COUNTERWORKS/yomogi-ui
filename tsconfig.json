@@ -20,6 +20,6 @@
     "allowSyntheticDefaultImports": true,
     "noEmitOnError": true
   },
-  "include": ["src/**/*"],
+  "include": ["src/**/*", "src/custom.d.ts"],
   "exclude": ["./node_modules"]
 }
