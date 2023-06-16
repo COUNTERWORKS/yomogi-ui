@@ -2,7 +2,7 @@ import { FC, ComponentPropsWithRef } from 'react';
 import { Color, Theme } from '../../themes';
 import { useTheme } from '../../hooks';
 import styled from '@emotion/styled';
-import { IoMdClose } from 'react-icons/io';
+import { Xmark } from '../../components/Icons';
 
 type AlertColor = Extract<Color, 'info' | 'success' | 'caution' | 'error'>;
 
@@ -28,7 +28,7 @@ export const Alert: FC<ComponentPropsWithRef<'div'> & AlertProps> = ({
       {children}
       {showCloseButton && (
         <CloseButton onClick={onClickCloseButton}>
-          <IoMdClose size={21} />
+          <Xmark />
         </CloseButton>
       )}
     </StyledAlert>
@@ -73,8 +73,14 @@ const StyledAlert = styled.div<{ theme: Theme; color: AlertColor }>`
 
 const CloseButton = styled.div`
   height: 21px;
+  font-size: 18px;
+  display: flex;
+  align-items: center;
   &:hover {
     cursor: pointer;
     opacity: 0.8;
+  }
+  path {
+    fill: currentColor;
   }
 `;
