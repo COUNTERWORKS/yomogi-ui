@@ -18,6 +18,9 @@ export const Arrow = memo(({ type, onClick, disabled = false, hidden = false }: 
 Arrow.displayName = 'Arrow';
 
 const Container = styled.div<{ disabled: boolean }>`
+  display: flex;
+  align-items: center;
+  justify-content: center;
   width: 40px;
   height: 40px;
   line-height: 40px;
