@@ -1,5 +1,5 @@
 import { FC, ReactNode, useMemo, memo, MouseEvent } from 'react';
-import { addMonths, differenceInCalendarMonths, startOfDay } from 'date-fns';
+import dayjs from 'dayjs';
 import { getCellType, isUnavailable } from './util';
 import { getDaysInMonth } from './util';
 import { Arrow } from './Arrow';
@@ -36,20 +36,20 @@ const Component: FC<{
   end,
 }) => {
   const year = useMemo(() => {
-    const date = addMonths(cursorDate, addMonthCount);
+    const date = dayjs(cursorDate).add(addMonthCount, 'month');
 
-    return date.getFullYear();
+    return date.year();
   }, [cursorDate, addMonthCount]);
 
   const month = useMemo(() => {
-    const date = addMonths(cursorDate, addMonthCount);
+    const date = dayjs(cursorDate).add(addMonthCount, 'month');
 
-    return date.getMonth() + 1;
+    return date.month() + 1;
   }, [cursorDate, addMonthCount]);
 
   const days = useMemo(() => {
-    const date = addMonths(cursorDate, addMonthCount);
-    return getDaysInMonth(date);
+    const date = dayjs(cursorDate).add(addMonthCount, 'month');
+    return getDaysInMonth(date.toDate());
   }, [cursorDate, addMonthCount]);
 
   return (
@@ -58,7 +58,7 @@ const Component: FC<{
         <Arrow
           type="left"
           onClick={prevMonth}
-          disabled={minDate ? differenceInCalendarMonths(cursorDate, startOfDay(new Date(minDate))) === 0 : false}
+          disabled={minDate ? dayjs(cursorDate).diff(dayjs(minDate).startOf('day'), 'month') === 0 : false}
           hidden={!first}
         />
         <Year>
@@ -67,7 +67,7 @@ const Component: FC<{
         <Arrow
           type="right"
           onClick={nextMonth}
-          disabled={maxDate ? differenceInCalendarMonths(cursorDate, startOfDay(new Date(maxDate))) === 0 : false}
+          disabled={maxDate ? dayjs(cursorDate).diff(dayjs(maxDate).startOf('day'), 'month') === 0 : false}
           hidden={!end}
         />
       </Header>
@@ -91,7 +91,7 @@ const Component: FC<{
               hoverable={Boolean(value)}
               unavailable={isUnavailable(
                 unavailableDates,
-                startOfDay(new Date(year, month - 1, value)),
+                dayjs(new Date(year, month - 1, value)).startOf('date'),
                 minDate,
                 maxDate
               )}

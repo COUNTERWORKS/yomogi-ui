@@ -9,7 +9,7 @@ import {
   RefObject,
   MouseEvent,
 } from 'react';
-import { subMonths, addMonths, isAfter, isBefore, differenceInCalendarDays } from 'date-fns';
+import dayjs from 'dayjs';
 import { useToggle, useClickAway } from 'react-use';
 import styled from '@emotion/styled';
 import { Picker } from './Picker';
@@ -81,7 +81,7 @@ export const DateRangePicker = memo<DateRangePickerProps>(
     const prevMonth = useCallback(
       (event: MouseEvent): void => {
         event.preventDefault();
-        setCurrentDate((date) => subMonths(date, numberOfMonths));
+        setCurrentDate((date) => dayjs(date).subtract(numberOfMonths, 'month').toDate());
       },
       [numberOfMonths, cursor]
     );
@@ -89,7 +89,7 @@ export const DateRangePicker = memo<DateRangePickerProps>(
     const nextMonth = useCallback(
       (event: MouseEvent): void => {
         event.preventDefault();
-        setCurrentDate((date) => addMonths(date, numberOfMonths));
+        setCurrentDate((date) => dayjs(date).add(numberOfMonths, 'month').toDate());
       },
       [numberOfMonths]
     );
@@ -111,24 +111,24 @@ export const DateRangePicker = memo<DateRangePickerProps>(
         const selectedDate = new Date(value);
 
         if (cursor === 'start' || !cursor) {
-          if (endDate && isAfter(selectedDate, toDate(endDate))) {
+          if (endDate && dayjs(selectedDate).isAfter(dayjs(endDate))) {
             setStartDate(formatDate(selectedDate));
             setEndDate('');
           } else {
-            if (endDate && minPeriod && differenceInCalendarDays(toDate(endDate), selectedDate) < minPeriod) {
+            if (endDate && minPeriod && dayjs(endDate).diff(dayjs(selectedDate), 'day') < minPeriod) {
               return;
             }
             setStartDate(formatDate(selectedDate));
             validateRange(isDisabled({ unavailableDates, startDate: formatDate(selectedDate), endDate }));
           }
           setCursor('end');
-        } else if (startDate && isBefore(selectedDate, toDate(startDate))) {
+        } else if (startDate && dayjs(selectedDate).isBefore(dayjs(startDate))) {
           setStartDate(formatDate(selectedDate));
           setEndDate('');
           setCursor('end');
           return;
         } else {
-          if (startDate && minPeriod && differenceInCalendarDays(selectedDate, toDate(startDate)) < minPeriod) {
+          if (startDate && minPeriod && dayjs(selectedDate).diff(dayjs(startDate), 'day') < minPeriod) {
             return;
           }
           setEndDate(formatDate(selectedDate));
@@ -176,7 +176,7 @@ export const DateRangePicker = memo<DateRangePickerProps>(
         if (isValidDateFormat(value)) {
           setCurrentDate(toDate(value));
           setIsStartDateError(false);
-          if (isValidDateFormat(endDate) && isAfter(toDate(endDate), toDate(value))) {
+          if (isValidDateFormat(endDate) && dayjs(endDate).isAfter(dayjs(value))) {
             setEndDate('');
           }
         } else {
@@ -198,7 +198,7 @@ export const DateRangePicker = memo<DateRangePickerProps>(
         if (isValidDateFormat(value)) {
           setCurrentDate(toDate(value));
           setIsEndDateError(false);
-          if (isValidDateFormat(startDate) && isBefore(toDate(startDate), toDate(value))) {
+          if (isValidDateFormat(startDate) && dayjs(startDate).isBefore(dayjs(value))) {
             setStartDate('');
           }
         } else {
