@@ -3,7 +3,6 @@ import isSameOrAfter from 'dayjs/plugin/isSameOrAfter';
 import isSameOrBefore from 'dayjs/plugin/isSameOrBefore';
 dayjs.extend(isSameOrAfter);
 dayjs.extend(isSameOrBefore);
-import { format } from 'date-fns';
 import { CellType } from './types';
 
 export const getDaysInMonth = (date: Date): Array<Partial<number>> => {
@@ -113,5 +112,5 @@ export const toDate = (value: string) => {
 };
 
 export const formatDate = (date: Date) => {
-  return format(date, 'yyyy/MM/dd');
+  return dayjs(date).format('YYYY/MM/DD');
 };
