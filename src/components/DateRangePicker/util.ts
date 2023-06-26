@@ -1,10 +1,14 @@
-import { lastDayOfMonth, startOfMonth, isSameDay, isAfter, isBefore } from 'date-fns';
+import dayjs, { Dayjs } from 'dayjs';
+import isSameOrAfter from 'dayjs/plugin/isSameOrAfter';
+import isSameOrBefore from 'dayjs/plugin/isSameOrBefore';
+dayjs.extend(isSameOrAfter);
+dayjs.extend(isSameOrBefore);
 import { format } from 'date-fns';
 import { CellType } from './types';
 
 export const getDaysInMonth = (date: Date): Array<Partial<number>> => {
-  const lastDate = lastDayOfMonth(date).getDate();
-  const startDay = startOfMonth(date).getDay();
+  const lastDate = dayjs(date).endOf('month').date();
+  const startDay = dayjs(date).startOf('month').day();
 
   const dates = Array(lastDate)
     .fill(null)
@@ -14,36 +18,37 @@ export const getDaysInMonth = (date: Date): Array<Partial<number>> => {
   return [...emptyArray, ...dates];
 };
 
-export const getCellType = (dates: { startDate: string; endDate: string }, date: Date): CellType => {
-  const startDate = isValidDateFormat(dates.startDate) ? toDate(dates.startDate) : '';
-  const endDate = isValidDateFormat(dates.endDate) ? toDate(dates.endDate) : '';
+export const getCellType = (dates: { startDate: string; endDate: string }, _date: Date): CellType => {
+  const startDate = isValidDateFormat(dates.startDate) ? dayjs(dates.startDate) : '';
+  const endDate = isValidDateFormat(dates.endDate) ? dayjs(dates.endDate) : '';
+  const date = dayjs(_date);
 
   if (!endDate && !startDate) {
     return 'default';
   }
 
   if (endDate && startDate) {
-    if (isSameDay(endDate, startDate) && isSameDay(startDate, date)) {
+    if (endDate.isSame(startDate) && startDate.isSame(date)) {
       return 'single';
     }
 
-    if (isSameDay(startDate, date)) {
+    if (date.isSame(startDate)) {
       return 'start';
     }
 
-    if (isSameDay(endDate, date)) {
+    if (date.isSame(endDate)) {
       return 'end';
     }
 
-    if (isAfter(endDate, date) && isBefore(startDate, date)) {
+    if (endDate.isAfter(date) && startDate.isBefore(date)) {
       return 'middle';
     }
   } else {
-    if (startDate && isSameDay(startDate, date)) {
+    if (startDate && date.isSame(startDate)) {
       return 'start';
     }
 
-    if (endDate && isSameDay(endDate, date)) {
+    if (endDate && date.isSame(endDate)) {
       return 'end';
     }
   }
@@ -62,7 +67,7 @@ export const hasUnavailableDatesInSelectedDates = ({
   endDate: string;
 }): boolean => {
   const date = unavailableDates.find(
-    (date) => !isBefore(new Date(date), toDate(startDate)) && !isAfter(new Date(date), toDate(endDate))
+    (date) => !dayjs(date).isBefore(dayjs(startDate)) && !dayjs(date).isAfter(dayjs(endDate))
   );
 
   return Boolean(date);
@@ -84,18 +89,18 @@ export const isDisabled = ({
 
 export const isUnavailable = (
   unavailableDates: Array<string>,
-  date: Date,
+  date: Dayjs,
   minDate?: string,
   maxDate?: string
 ): boolean => {
-  if (minDate && isValidDateFormat(minDate) && (isAfter(toDate(minDate), date) || isSameDay(toDate(minDate), date))) {
+  if (minDate && isValidDateFormat(minDate) && dayjs(minDate).isSameOrAfter(date)) {
     return true;
   }
-  if (maxDate && isValidDateFormat(maxDate) && (isBefore(toDate(maxDate), date) || isSameDay(toDate(maxDate), date))) {
+  if (maxDate && isValidDateFormat(maxDate) && dayjs(maxDate).isSameOrBefore(date)) {
     return true;
   }
 
-  return unavailableDates.some((unavailableDate: string) => isSameDay(new Date(unavailableDate), date));
+  return unavailableDates.some((unavailableDate: string) => date.isSame(dayjs(unavailableDate)));
 };
 
 export const isValidDateFormat = (value: string) => {
