@@ -67,7 +67,7 @@ const Component: FC<{
         <Arrow
           type="right"
           onClick={nextMonth}
-          disabled={maxDate ? dayjs(cursorDate).diff(dayjs(maxDate).startOf('day'), 'month') === 0 : false}
+          disabled={maxDate ? dayjs(cursorDate).diff(dayjs(maxDate).endOf('day'), 'month') === 0 : false}
           hidden={!end}
         />
       </Header>
