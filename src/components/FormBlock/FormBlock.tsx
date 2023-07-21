@@ -6,20 +6,33 @@ import { Hint } from '../Hint';
 import styled from '@emotion/styled';
 
 type Props = {
+  htmlFor?: string;
   children: ReactNode;
   className?: string;
   label?: string;
   hint?: string;
   optional?: boolean;
   errorMessage?: string;
-}
+};
 
-export const FormBlock: FC<Props> = ({ children, hint ='', label = '', className = '', optional = false, errorMessage }) => {
+export const FormBlock: FC<Props> = ({
+  htmlFor,
+  children,
+  hint = '',
+  label = '',
+  className = '',
+  optional = false,
+  errorMessage,
+}) => {
   const theme = useTheme();
 
   return (
     <StyledFormBlock className={className}>
-      {label && <FormLabel optional={optional}>{label}</FormLabel>}
+      {label && (
+        <FormLabel htmlFor={htmlFor} optional={optional}>
+          {label}
+        </FormLabel>
+      )}
       {hint && <Hint>{hint}</Hint>}
       {children}
       {errorMessage && <ErrorMessage theme={theme}>{errorMessage}</ErrorMessage>}
@@ -41,5 +54,3 @@ const ErrorMessage = styled.div<{ theme: Theme }>`
   font-size: 14px;
   color: ${({ theme }) => theme.colors.error.main};
 `;
-
-

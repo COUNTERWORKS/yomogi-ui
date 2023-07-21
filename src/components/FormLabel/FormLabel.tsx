@@ -4,20 +4,17 @@ import { useTheme } from '../../hooks';
 import styled from '@emotion/styled';
 
 export const FormLabel: FC<{
+  htmlFor?: string;
   children: ReactNode;
   className?: string;
   optional?: boolean;
-}> = ({ children, className = '', optional = false }) => {
+}> = ({ children, htmlFor, className = '', optional = false }) => {
   const theme = useTheme();
 
   return (
-    <StyledLabel className={className}>
+    <StyledLabel htmlFor={htmlFor} className={className}>
       {children}
-      {optional && (
-        <Optional theme={theme}>
-        （任意）
-        </Optional>
-      )}
+      {optional && <Optional theme={theme}>（任意）</Optional>}
     </StyledLabel>
   );
 };
@@ -29,7 +26,5 @@ const StyledLabel = styled.label`
 `;
 
 const Optional = styled.span<{ theme: Theme }>`
-  color: ${({ theme }) => theme.colors.gray[500]}
+  color: ${({ theme }) => theme.colors.gray[500]};
 `;
-
-
