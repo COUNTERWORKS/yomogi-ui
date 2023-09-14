@@ -36,9 +36,7 @@ export const Alert: FC<ComponentPropsWithRef<'div'> & AlertProps> = ({
 };
 
 const StyledAlert = styled.div<{ theme: Theme; color: AlertColor }>`
-  display: flex;
-  justify-content: space-between;
-  column-gap: 8px;
+  position: relative;
   padding: 12px 16px;
   margin: 16px 0;
   border-radius: 3px;
@@ -72,6 +70,9 @@ const StyledAlert = styled.div<{ theme: Theme; color: AlertColor }>`
 `;
 
 const CloseButton = styled.div`
+  position: absolute;
+  top: 12px;
+  right: 16px;
   height: 21px;
   font-size: 18px;
   display: flex;
