@@ -67,6 +67,7 @@ const Container = styled.div<Props & { theme: Theme }>`
   ${({ unavailable, theme }: Props & { theme: Theme }) =>
     unavailable &&
     css`
+      cursor: not-allowed;
       text-decoration: line-through;
       color: ${theme.colors.gray[500]};
     `}
