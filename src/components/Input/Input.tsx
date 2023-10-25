@@ -6,12 +6,13 @@ import { Theme } from '../../themes';
 type Props = {
   isError?: boolean;
   className?: string;
+  maxLength?: string;
 } & ComponentPropsWithRef<'input'>;
 
-export const Input = forwardRef<HTMLInputElement, Props>(({ isError = false, className = '', ...props }, ref) => {
+export const Input = forwardRef<HTMLInputElement, Props>(({ isError = false, className = '', maxLength= '', ...props }, ref) => {
   const theme = useTheme();
 
-  return <StyledInput {...props} ref={ref} isError={isError} theme={theme} className={className} />;
+  return <StyledInput {...props} ref={ref} isError={isError} theme={theme} className={className} maxlength={maxLength}/>;
 });
 
 Input.displayName = 'Input';
