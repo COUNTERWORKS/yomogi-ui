@@ -31,6 +31,7 @@ type DateRangePickerProps = {
   defaultStartDate?: string;
   defaultEndDate?: string;
   unavailableDates?: string[];
+  publicHolidays?: string[];
   minPeriod?: number;
   onError?: () => void;
   onClickAway?: () => void;
@@ -51,6 +52,7 @@ export const DateRangePicker = memo<DateRangePickerProps>(
     defaultStartDate = '',
     defaultEndDate = '',
     unavailableDates = [],
+    publicHolidays = [],
     minPeriod = 0,
     onError,
     renderInput,
@@ -259,6 +261,7 @@ export const DateRangePicker = memo<DateRangePickerProps>(
                         addMonthCount={index}
                         onClick={handleClick}
                         unavailableDates={unavailableDates}
+                        publicHolidays={publicHolidays}
                         first={index === 0}
                         end={Array(numberOfMonths).fill(1).length - 1 === index}
                       />
@@ -296,6 +299,7 @@ export const DateRangePicker = memo<DateRangePickerProps>(
                       addMonthCount={index}
                       onClick={handleClick}
                       unavailableDates={unavailableDates}
+                      publicHolidays={publicHolidays}
                       first={index === 0}
                       end={Array(numberOfMonths).fill(1).length - 1 === index}
                     />

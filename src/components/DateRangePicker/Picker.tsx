@@ -18,6 +18,7 @@ const Component: FC<{
   maxDate?: string;
   addMonthCount: number;
   unavailableDates: string[];
+  publicHolidays: string[];
   onClick: (value: string) => void;
   first: boolean;
   end: boolean;
@@ -31,6 +32,7 @@ const Component: FC<{
   maxDate,
   addMonthCount,
   unavailableDates,
+  publicHolidays,
   onClick,
   first,
   end,
@@ -89,6 +91,8 @@ const Component: FC<{
               onClick={onClick}
               type={getCellType({ startDate, endDate }, new Date(year, month - 1, value))}
               hoverable={Boolean(value)}
+              isPublicHoliday={publicHolidays.includes(`${year}/${`0${month}`.slice(-2)}/${`0${value}`.slice(-2)}`)}
+              day={new Date(year, month - 1, value).getDay()}
               unavailable={isUnavailable(
                 unavailableDates,
                 dayjs(new Date(year, month - 1, value)).startOf('date'),

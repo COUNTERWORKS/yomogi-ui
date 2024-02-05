@@ -11,6 +11,8 @@ export interface Props {
   onClick?: (value: string) => void;
   type?: CellType;
   unavailable?: boolean;
+  isPublicHoliday?: boolean;
+  day?: number;
   year?: number;
   month?: number;
 }
@@ -19,15 +21,19 @@ export const Cell: FC<Props> = ({
   value = '',
   year,
   month,
+  day,
   hoverable = true,
   onClick = undefined,
   type = 'default',
   unavailable = false,
+  isPublicHoliday = false,
 }) => {
   const theme = useTheme();
   return (
     <Container
       theme={theme}
+      isPublicHoliday={isPublicHoliday}
+      day={day}
       unavailable={unavailable}
       hoverable={hoverable}
       value={value}
@@ -52,10 +58,11 @@ const Container = styled.div<Props & { theme: Theme }>`
   align-items: center;
   font-size: 14px;
   font-weight: bold;
-  ${({ unavailable, hoverable, theme }: Props & { theme: Theme }) =>
+  ${({ day, isPublicHoliday, unavailable, hoverable, theme }: Props & { theme: Theme }) =>
     !unavailable &&
     hoverable &&
     css`
+      color: ${isPublicHoliday || day === 0 ? theme.colors.red[600] : day === 6 ? theme.colors.blue[600] : 'initial'};
       cursor: pointer;
       &:hover {
         border-radius: 4px;
