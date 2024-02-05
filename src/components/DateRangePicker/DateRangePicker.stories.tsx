@@ -77,6 +77,7 @@ const Template: Story = () => {
           <DateRangePicker
             defaultStartDate="2022/01/05"
             defaultEndDate="2022/01/10"
+            publicHolidays={['2022/01/01']}
             renderInput={({ startProps, endProps }) => (
               <Flex gap={4}>
                 <Input {...startProps} />
