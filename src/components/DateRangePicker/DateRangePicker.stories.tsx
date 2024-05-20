@@ -72,6 +72,38 @@ const Template: Story = () => {
         </FormBlock>
         <FormBlock>
           <Typography as="p" size="small">
+            minDate(2023-01-10) maxDate (2023-05-26)設定
+          </Typography>
+          <DateRangePicker
+            numberOfMonths={2}
+            minDate="2023/01/10"
+            maxDate="2023/05/27"
+            renderInput={({ startProps, endProps }) => (
+              <Flex gap={4}>
+                <Input {...startProps} />
+                <Input {...endProps} />
+              </Flex>
+            )}
+          />
+        </FormBlock>
+        <FormBlock>
+          <Typography as="p" size="small">
+            minDate(2023-01-10) maxDate (2023-06-26)設定
+          </Typography>
+          <DateRangePicker
+            numberOfMonths={2}
+            minDate="2023/01/10"
+            maxDate="2023/06/27"
+            renderInput={({ startProps, endProps }) => (
+              <Flex gap={4}>
+                <Input {...startProps} />
+                <Input {...endProps} />
+              </Flex>
+            )}
+          />
+        </FormBlock>
+        <FormBlock>
+          <Typography as="p" size="small">
             初期値あり
           </Typography>
           <DateRangePicker
