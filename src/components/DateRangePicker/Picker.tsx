@@ -60,7 +60,7 @@ const Component: FC<{
         <Arrow
           type="left"
           onClick={prevMonth}
-          disabled={minDate ? dayjs(cursorDate).diff(dayjs(minDate).startOf('day'), 'month') === 0 : false}
+          disabled={minDate ? dayjs(cursorDate).diff(dayjs(minDate).startOf('day'), 'month') <= 0 : false}
           hidden={!first}
         />
         <Year>
@@ -69,7 +69,11 @@ const Component: FC<{
         <Arrow
           type="right"
           onClick={nextMonth}
-          disabled={maxDate ? dayjs(cursorDate).diff(dayjs(maxDate).endOf('day'), 'month') === 0 : false}
+          disabled={
+            maxDate
+              ? dayjs(cursorDate).add(addMonthCount, 'month').diff(dayjs(maxDate).endOf('day'), 'month') >= 0
+              : false
+          }
           hidden={!end}
         />
       </Header>
