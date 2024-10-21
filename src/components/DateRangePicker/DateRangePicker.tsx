@@ -178,7 +178,7 @@ export const DateRangePicker = memo<DateRangePickerProps>(
         if (isValidDateFormat(value)) {
           setCurrentDate(toDate(value));
           setIsStartDateError(false);
-          if (isValidDateFormat(endDate) && dayjs(endDate).isAfter(dayjs(value))) {
+          if (isValidDateFormat(endDate) && dayjs(endDate).isBefore(dayjs(value))) {
             setEndDate('');
           }
         } else {
@@ -200,7 +200,7 @@ export const DateRangePicker = memo<DateRangePickerProps>(
         if (isValidDateFormat(value)) {
           setCurrentDate(toDate(value));
           setIsEndDateError(false);
-          if (isValidDateFormat(startDate) && dayjs(startDate).isBefore(dayjs(value))) {
+          if (isValidDateFormat(startDate) && dayjs(startDate).isAfter(dayjs(value))) {
             setStartDate('');
           }
         } else {
